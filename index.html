@@ -1,1980 +1,959 @@
 <!DOCTYPE html>
-<html data-theme="dark" lang="es">
-
+<html lang="es" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infografía Interactiva: Dinámica y Táctica *** Balonmano</title>
-    <meta name="description" content="Recurso educativo interactivo sobre dinámica y táctica del balonmano">
-    <meta name="theme-color" content="#0a1128">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <style>
-        :root {
-            --bg-deep: #060b18;
-            --bg-primary: #0a1128;
-            --bg-card: rgba(14, 22, 48, 0.72);
-            --bg-card-hover: rgba(22, 34, 68, 0.85);
-            --accent-cyan: #00e5ff;
-            --accent-amber: #f59e0b;
-            --accent-teal: #14b8a6;
-            --accent-orange: #ff6b35;
-            --accent-rose: #f43f5e;
-            --text-primary: #e8edf5;
-            --text-secondary: #7b8ba8;
-            --text-muted: #4a5568;
-            --border-color: rgba(255, 255, 255, 0.06);
-            --border-accent: rgba(0, 229, 255, 0.15);
-            --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.12);
-            --glow-amber: 0 0 20px rgba(245, 158, 11, 0.12);
-            --radius: 14px;
-            --radius-lg: 22px;
-            --radius-sm: 8px;
-            --font-display: 'Chakra Petch', sans-serif;
-            --font-body: 'Outfit', sans-serif;
-            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .high-contrast {
-            --bg-deep: #000;
-            --bg-primary: #0a0a0a;
-            --bg-card: rgba(25, 25, 25, 0.95);
-            --bg-card-hover: rgba(35, 35, 35, 0.98);
-            --text-primary: #fff;
-            --text-secondary: #d0d0d0;
-            --text-muted: #999;
-            --border-color: rgba(255, 255, 255, 0.18);
-            --border-accent: rgba(0, 229, 255, 0.35);
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px
-        }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--bg-deep);
-            color: var(--text-primary);
-            line-height: 1.65;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: var(--font-display);
-            font-weight: 700;
-            line-height: 1.15
-        }
-
-        a {
-            color: var(--accent-cyan);
-            text-decoration: none;
-            transition: var(--transition)
-        }
-
-        a:hover {
-            color: #5cf
-        }
-
-        .skip-link {
-            position: absolute;
-            top: -100%;
-            left: 1rem;
-            background: var(--accent-cyan);
-            color: #000;
-            padding: .5rem 1rem;
-            border-radius: var(--radius-sm);
-            z-index: 10000;
-            font-weight: 600;
-            transition: var(--transition)
-        }
-
-        .skip-link:focus {
-            top: 1rem
-        }
-
-        #particles-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.5
-        }
-
-        .content-wrap {
-            position: relative;
-            z-index: 1
-        }
-
-        /* Navbar */
-        .navbar-custom {
-            background: rgba(6, 11, 24, 0.92);
-            backdrop-filter: blur(16px);
-            border-bottom: 1px solid var(--border-color);
-            padding: .75rem 0;
-            transition: var(--transition)
-        }
-
-        .navbar-custom .navbar-brand {
-            font-family: var(--font-display);
-            font-weight: 700;
-            color: var(--accent-cyan);
-            font-size: 1.15rem;
-            letter-spacing: 0.5px
-        }
-
-        .navbar-custom .nav-link {
-            color: var(--text-secondary);
-            font-size: .88rem;
-            font-weight: 500;
-            padding: .5rem .85rem;
-            border-radius: var(--radius-sm);
-            transition: var(--transition)
-        }
-
-        .navbar-custom .nav-link:hover,
-        .navbar-custom .nav-link:focus {
-            color: var(--text-primary);
-            background: rgba(0, 229, 255, 0.06)
-        }
-
-        .navbar-custom .nav-link:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 2px
-        }
-
-        .btn-contrast {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            font-size: .8rem;
-            padding: .35rem .7rem;
-            border-radius: var(--radius-sm);
-            cursor: pointer;
-            transition: var(--transition)
-        }
-
-        .btn-contrast:hover {
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--accent-cyan);
-            border-color: var(--border-accent)
-        }
-
-        .btn-contrast:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 2px
-        }
-
-        /* Hero */
-        .hero-section {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 6rem 1rem 4rem;
-            overflow: hidden
-        }
-
-        .hero-bg-gradient {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 70% 50% at 50% 40%, rgba(0, 229, 255, 0.06), transparent 70%), radial-gradient(ellipse 50% 60% at 30% 60%, rgba(245, 158, 11, 0.04), transparent 60%);
-            pointer-events: none
-        }
-
-        .hero-content {
-            text-align: center;
-            position: relative;
-            z-index: 2
-        }
-
-        .hero-title {
-            font-size: clamp(2.2rem, 5.5vw, 4.2rem);
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: .75rem;
-            letter-spacing: 1px
-        }
-
-        .hero-title span {
-            color: var(--accent-cyan);
-            text-shadow: 0 0 40px rgba(0, 229, 255, 0.2)
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 2.2vw, 1.35rem);
-            color: var(--text-secondary);
-            max-width: 650px;
-            margin: 0 auto 1.5rem;
-            font-weight: 400
-        }
-
-        .hero-value {
-            font-size: clamp(.88rem, 1.6vw, 1.05rem);
-            color: var(--accent-amber);
-            font-weight: 500;
-            margin-bottom: 2.5rem;
-            letter-spacing: .5px
-        }
-
-        .hero-stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            justify-content: center;
-            margin-bottom: 2.5rem
-        }
-
-        .hero-stat {
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius);
-            padding: 1rem 1.4rem;
-            backdrop-filter: blur(10px);
-            text-align: center;
-            min-width: 130px;
-            transition: var(--transition)
-        }
-
-        .hero-stat:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-3px)
-        }
-
-        .hero-stat .stat-value {
-            font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--accent-cyan);
-            display: block
-        }
-
-        .hero-stat .stat-label {
-            font-size: .78rem;
-            color: var(--text-secondary);
-            margin-top: .2rem
-        }
-
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap
-        }
-
-        .btn-primary-custom {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.18), rgba(0, 229, 255, 0.08));
-            border: 1px solid rgba(0, 229, 255, 0.3);
-            color: var(--accent-cyan);
-            padding: .75rem 2rem;
-            border-radius: var(--radius);
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: .95rem;
-            cursor: pointer;
-            transition: var(--transition);
-            letter-spacing: .5px
-        }
-
-        .btn-primary-custom:hover {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.28), rgba(0, 229, 255, 0.14));
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-2px);
-            color: var(--accent-cyan)
-        }
-
-        .btn-primary-custom:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 3px
-        }
-
-        .btn-secondary-custom {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-            padding: .75rem 2rem;
-            border-radius: var(--radius);
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: .95rem;
-            cursor: pointer;
-            transition: var(--transition)
-        }
-
-        .btn-secondary-custom:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.15)
-        }
-
-        .btn-secondary-custom:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 3px
-        }
-
-        /* Concept Map */
-        .concept-map {
-            position: relative;
-            width: 100%;
-            max-width: 700px;
-            margin: 3rem auto 0;
-            aspect-ratio: 7/5
-        }
-
-        .map-node {
-            position: absolute;
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius);
-            padding: .6rem 1rem;
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            transition: var(--transition);
-            text-align: center;
-            white-space: nowrap
-        }
-
-        .map-node:hover {
-            border-color: var(--accent-cyan);
-            box-shadow: var(--glow-cyan);
-            transform: scale(1.08)
-        }
-
-        .map-node.center-node {
-            background: linear-gradient(135deg, rgba(0, 229, 255, 0.12), rgba(0, 229, 255, 0.04));
-            border-color: rgba(0, 229, 255, 0.35);
-            padding: 1rem 1.6rem;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.1rem;
-            color: var(--accent-cyan);
-            letter-spacing: 1px
-        }
-
-        .map-node .node-icon {
-            font-size: 1.1rem;
-            margin-right: .35rem
-        }
-
-        .map-node .node-label {
-            font-size: .78rem;
-            font-weight: 600;
-            color: var(--text-primary)
-        }
-
-        .map-lines {
-            position: absolute;
-            inset: 0;
-            pointer-events: none
-        }
-
-        /* Sections */
-        .section-block {
-            padding: 5rem 1rem
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem
-        }
-
-        .section-header h2 {
-            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
-            color: var(--text-primary);
-            margin-bottom: .6rem;
-            letter-spacing: .5px
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 1rem
-        }
-
-        .accent-line {
-            width: 60px;
-            height: 3px;
-            background: var(--accent-cyan);
-            margin: 1rem auto 0;
-            border-radius: 2px;
-            box-shadow: 0 0 12px rgba(0, 229, 255, 0.3)
-        }
-
-        /* Bento Grid */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
-            max-width: 1100px;
-            margin: 0 auto
-        }
-
-        .bento-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.8rem;
-            cursor: pointer;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(8px)
-        }
-
-        .bento-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
-            opacity: 0;
-            transition: var(--transition)
-        }
-
-        .bento-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--border-accent);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-4px)
-        }
-
-        .bento-card:hover::before {
-            opacity: 1
-        }
-
-        .bento-card:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 2px
-        }
-
-        .bento-card .card-icon {
-            font-size: 1.8rem;
-            margin-bottom: .8rem;
-            display: block
-        }
-
-        .bento-card .card-title {
-            font-family: var(--font-display);
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: .4rem
-        }
-
-        .bento-card .card-desc {
-            font-size: .82rem;
-            color: var(--text-secondary);
-            line-height: 1.5
-        }
-
-        .bento-card.span-2 {
-            grid-column: span 2
-        }
-
-        .bento-card.accent-cyan .card-icon {
-            color: var(--accent-cyan)
-        }
-
-        .bento-card.accent-amber .card-icon {
-            color: var(--accent-amber)
-        }
-
-        .bento-card.accent-teal .card-icon {
-            color: var(--accent-teal)
-        }
-
-        .bento-card.accent-orange .card-icon {
-            color: var(--accent-orange)
-        }
-
-        .bento-card.accent-rose .card-icon {
-            color: var(--accent-rose)
-        }
-
-        /* Court */
-        .court-container {
-            max-width: 800px;
-            margin: 0 auto
-        }
-
-        .court-svg-wrapper {
-            background: var(--bg-card);
-            border: 1px solid var(--border-accent);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            backdrop-filter: blur(8px);
-            position: relative;
-            overflow: hidden
-        }
-
-        .court-svg-wrapper::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(0, 229, 255, 0.03), transparent 50%);
-            pointer-events: none
-        }
-
-        .court-svg {
-            width: 100%;
-            height: auto;
-            display: block
-        }
-
-        .court-zone {
-            fill: rgba(0, 229, 255, 0.04);
-            stroke: none;
-            cursor: pointer;
-            transition: fill 0.3s
-        }
-
-        .court-zone:hover {
-            fill: rgba(0, 229, 255, 0.12)
-        }
-
-        .court-zone:hover .zone-tooltip {
-            opacity: 1
-        }
-
-        .zone-tooltip-bg {
-            fill: rgba(6, 11, 24, 0.92);
-            stroke: var(--accent-cyan);
-            stroke-width: 0.5;
-            rx: 4
-        }
-
-        .zone-tooltip-text {
-            fill: var(--text-primary);
-            font-size: 5.5px;
-            font-family: 'Outfit', sans-serif
-        }
-
-        .court-legend {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-top: 1.2rem;
-            justify-content: center
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            font-size: .82rem;
-            color: var(--text-secondary)
-        }
-
-        .legend-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 3px;
-            flex-shrink: 0
-        }
-
-        /* Position Cards */
-        .positions-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.2rem;
-            max-width: 1100px;
-            margin: 0 auto
-        }
-
-        .pos-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            transition: var(--transition);
-            backdrop-filter: blur(8px)
-        }
-
-        .pos-card:hover {
-            border-color: var(--border-accent);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-3px)
-        }
-
-        .pos-card-header {
-            padding: 1.2rem 1.4rem .8rem;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid var(--border-color)
-        }
-
-        .pos-number {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: #fff;
-            flex-shrink: 0
-        }
-
-        .pos-card-body {
-            padding: 1.2rem 1.4rem
-        }
-
-        .pos-role {
-            font-size: .88rem;
-            color: var(--text-secondary);
-            margin-bottom: .8rem
-        }
-
-        .pos-attrs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .4rem;
-            margin-bottom: 1rem
-        }
-
-        .pos-attr {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: .2rem .7rem;
-            font-size: .72rem;
-            color: var(--text-secondary)
-        }
-
-        .accordion-custom .accordion-button {
-            background: var(--bg-card);
-            color: var(--text-primary);
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: .88rem;
-            border: none;
-            box-shadow: none;
-            padding: .8rem 1.2rem
-        }
-
-        .accordion-custom .accordion-button:not(.collapsed) {
-            background: rgba(0, 229, 255, 0.06);
-            color: var(--accent-cyan)
-        }
-
-        .accordion-custom .accordion-button::after {
-            filter: invert(1) brightness(2)
-        }
-
-        .accordion-custom .accordion-body {
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-size: .85rem;
-            padding: 1rem 1.2rem;
-            line-height: 1.6;
-            border-top: 1px solid var(--border-color)
-        }
-
-        /* Techniques */
-        .techniques-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.4rem;
-            max-width: 1100px;
-            margin: 0 auto
-        }
-
-        .tech-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.8rem;
-            transition: var(--transition);
-            backdrop-filter: blur(8px);
-            position: relative;
-            overflow: hidden
-        }
-
-        .tech-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            border-radius: 3px 3px 0 0
-        }
-
-        .tech-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-3px);
-            box-shadow: var(--glow-cyan)
-        }
-
-        .tech-card.cyan-accent::after {
-            background: var(--accent-cyan)
-        }
-
-        .tech-card.amber-accent::after {
-            background: var(--accent-amber)
-        }
-
-        .tech-card.teal-accent::after {
-            background: var(--accent-teal)
-        }
-
-        .tech-card .tech-icon {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            display: block
-        }
-
-        .tech-card h4 {
-            font-size: 1.1rem;
-            margin-bottom: .5rem;
-            color: var(--text-primary)
-        }
-
-        .tech-card .tech-desc {
-            font-size: .88rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.2rem;
-            line-height: 1.6
-        }
-
-        .tech-detail {
-            border-top: 1px solid var(--border-color);
-            padding-top: 1rem;
-            margin-top: .5rem
-        }
-
-        .tech-detail-item {
-            margin-bottom: .7rem
-        }
-
-        .tech-detail-item .detail-label {
-            font-size: .72rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-muted);
-            font-weight: 600;
-            margin-bottom: .2rem
-        }
-
-        .tech-detail-item .detail-text {
-            font-size: .84rem;
-            color: var(--text-secondary);
-            line-height: 1.5
-        }
-
-        /* Goalkeeper */
-        .gk-section {
-            max-width: 1100px;
-            margin: 0 auto
-        }
-
-        .gk-hero {
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02));
-            border: 1px solid rgba(245, 158, 11, 0.2);
-            border-radius: var(--radius-lg);
-            padding: 2.5rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden
-        }
-
-        .gk-hero::before {
-            content: '';
-            position: absolute;
-            top: -40%;
-            right: -20%;
-            width: 60%;
-            height: 120%;
-            background: radial-gradient(circle, rgba(245, 158, 11, 0.06), transparent 60%);
-            pointer-events: none
-        }
-
-        .gk-hero h3 {
-            font-size: 1.6rem;
-            color: var(--accent-amber);
-            margin-bottom: .5rem
-        }
-
-        .gk-hero p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            max-width: 500px;
-            margin: 0 auto
-        }
-
-        .gk-aspects {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 1rem
-        }
-
-        .gk-aspect {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 1.4rem;
-            transition: var(--transition);
-            backdrop-filter: blur(8px)
-        }
-
-        .gk-aspect:hover {
-            border-color: rgba(245, 158, 11, 0.3);
-            box-shadow: var(--glow-amber);
-            transform: translateY(-2px)
-        }
-
-        .gk-aspect .aspect-icon {
-            font-size: 1.5rem;
-            color: var(--accent-amber);
-            margin-bottom: .7rem;
-            display: block
-        }
-
-        .gk-aspect h5 {
-            font-size: .92rem;
-            color: var(--text-primary);
-            margin-bottom: .4rem;
-            font-family: var(--font-display)
-        }
-
-        .gk-aspect p {
-            font-size: .82rem;
-            color: var(--text-secondary);
-            line-height: 1.55
-        }
-
-        /* Tactics */
-        .tactics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.2rem;
-            max-width: 1100px;
-            margin: 0 auto
-        }
-
-        .tactic-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 1.6rem;
-            transition: var(--transition);
-            backdrop-filter: blur(8px)
-        }
-
-        .tactic-card:hover {
-            border-color: var(--border-accent);
-            box-shadow: var(--glow-cyan);
-            transform: translateY(-3px)
-        }
-
-        .tactic-card .tactic-icon {
-            font-size: 1.4rem;
-            margin-bottom: .8rem;
-            display: block;
-            color: var(--accent-teal)
-        }
-
-        .tactic-card h4 {
-            font-size: 1rem;
-            margin-bottom: .5rem;
-            color: var(--text-primary);
-            font-family: var(--font-display)
-        }
-
-        .tactic-card .tactic-desc {
-            font-size: .84rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            line-height: 1.55
-        }
-
-        .tactic-card .tactic-purpose {
-            background: rgba(20, 184, 166, 0.06);
-            border-left: 3px solid var(--accent-teal);
-            padding: .6rem .8rem;
-            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-            margin-bottom: .8rem
-        }
-
-        .tactic-card .tactic-purpose .tp-label {
-            font-size: .68rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--accent-teal);
-            font-weight: 700;
-            margin-bottom: .15rem
-        }
-
-        .tactic-card .tactic-purpose .tp-text {
-            font-size: .82rem;
-            color: var(--text-secondary)
-        }
-
-        .tactic-card .tactic-key {
-            font-size: .78rem;
-            color: var(--text-muted);
-            font-style: italic
-        }
-
-        /* Quiz */
-        .quiz-container {
-            max-width: 720px;
-            margin: 0 auto
-        }
-
-        .quiz-progress {
-            height: 4px;
-            background: var(--border-color);
-            border-radius: 2px;
-            margin-bottom: 2rem;
-            overflow: hidden
-        }
-
-        .quiz-progress-bar {
-            height: 100%;
-            background: var(--accent-cyan);
-            border-radius: 2px;
-            transition: width 0.5s ease;
-            box-shadow: 0 0 8px rgba(0, 229, 255, 0.3)
-        }
-
-        .quiz-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-lg);
-            padding: 2.2rem;
-            backdrop-filter: blur(8px)
-        }
-
-        .quiz-question-num {
-            font-size: .78rem;
-            color: var(--accent-cyan);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: .6rem
-        }
-
-        .quiz-question {
-            font-size: 1.1rem;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-            line-height: 1.5
-        }
-
-        .quiz-options {
-            display: flex;
-            flex-direction: column;
-            gap: .7rem
-        }
-
-        .quiz-option {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius);
-            padding: 1rem 1.2rem;
-            cursor: pointer;
-            transition: var(--transition);
-            font-size: .9rem;
-            color: var(--text-secondary);
-            text-align: left;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            gap: .8rem
-        }
-
-        .quiz-option:hover {
-            border-color: var(--border-accent);
-            background: rgba(0, 229, 255, 0.04);
-            color: var(--text-primary)
-        }
-
-        .quiz-option:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 2px
-        }
-
-        .quiz-option .opt-letter {
-            width: 28px;
-            height: 28px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: .82rem;
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-muted);
-            flex-shrink: 0;
-            transition: var(--transition)
-        }
-
-        .quiz-option:hover .opt-letter {
-            background: rgba(0, 229, 255, 0.1);
-            color: var(--accent-cyan)
-        }
-
-        .quiz-option.correct {
-            border-color: var(--accent-teal);
-            background: rgba(20, 184, 166, 0.08);
-            color: var(--accent-teal)
-        }
-
-        .quiz-option.correct .opt-letter {
-            background: var(--accent-teal);
-            color: #fff
-        }
-
-        .quiz-option.wrong {
-            border-color: var(--accent-rose);
-            background: rgba(244, 63, 94, 0.08);
-            color: var(--accent-rose)
-        }
-
-        .quiz-option.wrong .opt-letter {
-            background: var(--accent-rose);
-            color: #fff
-        }
-
-        .quiz-option.disabled {
-            pointer-events: none;
-            opacity: 0.6
-        }
-
-        .quiz-feedback {
-            margin-top: 1.2rem;
-            padding: 1rem;
-            border-radius: var(--radius);
-            font-size: .88rem;
-            display: none;
-            line-height: 1.55
-        }
-
-        .quiz-feedback.show {
-            display: block
-        }
-
-        .quiz-feedback.correct-fb {
-            background: rgba(20, 184, 166, 0.08);
-            border: 1px solid rgba(20, 184, 166, 0.2);
-            color: var(--accent-teal)
-        }
-
-        .quiz-feedback.wrong-fb {
-            background: rgba(244, 63, 94, 0.08);
-            border: 1px solid rgba(244, 63, 94, 0.2);
-            color: var(--accent-rose)
-        }
-
-        .quiz-next {
-            margin-top: 1.2rem;
-            display: none
-        }
-
-        .quiz-next.show {
-            display: inline-block
-        }
-
-        .quiz-results {
-            text-align: center;
-            padding: 2rem;
-            display: none
-        }
-
-        .quiz-results.show {
-            display: block
-        }
-
-        .quiz-score {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: .5rem
-        }
-
-        .quiz-score.great {
-            color: var(--accent-teal)
-        }
-
-        .quiz-score.good {
-            color: var(--accent-amber)
-        }
-
-        .quiz-score.needs {
-            color: var(--accent-rose)
-        }
-
-        .quiz-results p {
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            font-size: 1rem
-        }
-
-        .btn-restart {
-            background: rgba(0, 229, 255, 0.1);
-            border: 1px solid rgba(0, 229, 255, 0.25);
-            color: var(--accent-cyan);
-            padding: .7rem 1.8rem;
-            border-radius: var(--radius);
-            font-family: var(--font-display);
-            font-weight: 600;
-            font-size: .9rem;
-            cursor: pointer;
-            transition: var(--transition)
-        }
-
-        .btn-restart:hover {
-            background: rgba(0, 229, 255, 0.18);
-            box-shadow: var(--glow-cyan)
-        }
-
-        .btn-restart:focus-visible {
-            outline: 2px solid var(--accent-cyan);
-            outline-offset: 3px
-        }
-
-        /* Footer */
-        .footer-bar {
-            background: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            padding: 2.5rem 1rem;
-            backdrop-filter: blur(8px)
-        }
-
-        .footer-bar .takeaway {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center
-        }
-
-        .footer-bar h3 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            color: var(--accent-cyan);
-            margin-bottom: 1rem
-        }
-
-        .takeaway-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: .6rem;
-            justify-content: center
-        }
-
-        .takeaway-chip {
-            background: rgba(0, 229, 255, 0.06);
-            border: 1px solid rgba(0, 229, 255, 0.12);
-            border-radius: 20px;
-            padding: .4rem 1rem;
-            font-size: .82rem;
-            color: var(--text-secondary);
-            transition: var(--transition)
-        }
-
-        .takeaway-chip:hover {
-            border-color: var(--accent-cyan);
-            color: var(--accent-cyan)
-        }
-
-        .footer-copy {
-            text-align: center;
-            margin-top: 1.5rem;
-            font-size: .75rem;
-            color: var(--text-muted)
-        }
-
-        /* Scroll reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.7s ease, transform 0.7s ease
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0)
-        }
-
-        /* Reduced motion */
-        @media(prefers-reduced-motion:reduce) {
-            .reveal {
-                opacity: 1;
-                transform: none;
-                transition: none
-            }
-
-            .map-node,
-            .bento-card,
-            .pos-card,
-            .tech-card,
-            .gk-aspect,
-            .tactic-card,
-            .quiz-option,
-            .hero-stat {
-                transition: none !important
-            }
-
-            #particles-canvas {
-                display: none
-            }
-
-            html {
-                scroll-behavior: auto
-            }
-        }
-
-        /* Responsive */
-        @media(max-width:991px) {
-            .bento-grid {
-                grid-template-columns: repeat(2, 1fr)
-            }
-
-            .bento-card.span-2 {
-                grid-column: span 2
-            }
-
-            .concept-map {
-                max-width: 500px;
-                aspect-ratio: 5/4
-            }
-        }
-
-        @media(max-width:767px) {
-            .bento-grid {
-                grid-template-columns: 1fr
-            }
-
-            .bento-card.span-2 {
-                grid-column: span 1
-            }
-
-            .hero-stats {
-                gap: .8rem
-            }
-
-            .hero-stat {
-                min-width: 110px;
-                padding: .8rem 1rem
-            }
-
-            .concept-map {
-                display: none
-            }
-
-            .section-block {
-                padding: 3.5rem .8rem
-            }
-
-            .positions-grid {
-                grid-template-columns: 1fr
-            }
-
-            .techniques-grid {
-                grid-template-columns: 1fr
-            }
-
-            .tactics-grid {
-                grid-template-columns: 1fr
-            }
-
-            .gk-aspects {
-                grid-template-columns: 1fr
-            }
-
-            .navbar-custom .nav-link {
-                padding: .4rem .6rem;
-                font-size: .8rem
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Infografía Interactiva: Dinámica y Táctica del Balonmano</title>
+<meta name="description" content="Recurso educativo interactivo sobre dinámica y táctica del balonmano">
+<meta name="theme-color" content="#0a1128">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<style>
+:root{
+--bg-deep:#060b18;--bg-primary:#0a1128;--bg-card:rgba(14,22,48,0.72);--bg-card-hover:rgba(22,34,68,0.85);
+--accent-cyan:#00e5ff;--accent-amber:#f59e0b;--accent-teal:#14b8a6;--accent-orange:#ff6b35;--accent-rose:#f43f5e;
+--text-primary:#e8edf5;--text-secondary:#7b8ba8;--text-muted:#4a5568;
+--border-color:rgba(255,255,255,0.06);--border-accent:rgba(0,229,255,0.15);
+--glow-cyan:0 0 20px rgba(0,229,255,0.12);--glow-amber:0 0 20px rgba(245,158,11,0.12);
+--radius:14px;--radius-lg:22px;--radius-sm:8px;
+--font-display:'Chakra Petch',sans-serif;--font-body:'Outfit',sans-serif;
+--transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.high-contrast{
+--bg-deep:#000;--bg-primary:#0a0a0a;--bg-card:rgba(25,25,25,0.95);--bg-card-hover:rgba(35,35,35,0.98);
+--text-primary:#fff;--text-secondary:#d0d0d0;--text-muted:#999;--border-color:rgba(255,255,255,0.18);
+--border-accent:rgba(0,229,255,0.35);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--font-body);background:var(--bg-deep);color:var(--text-primary);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5,h6{font-family:var(--font-display);font-weight:700;line-height:1.15}
+a{color:var(--accent-cyan);text-decoration:none;transition:var(--transition)}
+a:hover{color:#5cf}
+.skip-link{position:absolute;top:-100%;left:1rem;background:var(--accent-cyan);color:#000;padding:.5rem 1rem;border-radius:var(--radius-sm);z-index:10000;font-weight:600;transition:var(--transition)}
+.skip-link:focus{top:1rem}
+#particles-canvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.5}
+.content-wrap{position:relative;z-index:1}
+
+/* Navbar */
+.navbar-custom{background:rgba(6,11,24,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-color);padding:.75rem 0;transition:var(--transition)}
+.navbar-custom .navbar-brand{font-family:var(--font-display);font-weight:700;color:var(--accent-cyan);font-size:1.15rem;letter-spacing:0.5px}
+.navbar-custom .nav-link{color:var(--text-secondary);font-size:.88rem;font-weight:500;padding:.5rem .85rem;border-radius:var(--radius-sm);transition:var(--transition)}
+.navbar-custom .nav-link:hover,.navbar-custom .nav-link:focus{color:var(--text-primary);background:rgba(0,229,255,0.06)}
+.navbar-custom .nav-link:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:2px}
+.btn-contrast{background:rgba(255,255,255,0.06);border:1px solid var(--border-color);color:var(--text-secondary);font-size:.8rem;padding:.35rem .7rem;border-radius:var(--radius-sm);cursor:pointer;transition:var(--transition)}
+.btn-contrast:hover{background:rgba(0,229,255,0.1);color:var(--accent-cyan);border-color:var(--border-accent)}
+.btn-contrast:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:2px}
+
+/* Hero */
+.hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;padding:6rem 1rem 4rem;overflow:hidden}
+.hero-bg-gradient{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 40%,rgba(0,229,255,0.06),transparent 70%),radial-gradient(ellipse 50% 60% at 30% 60%,rgba(245,158,11,0.04),transparent 60%);pointer-events:none}
+.hero-content{text-align:center;position:relative;z-index:2}
+.hero-title{font-size:clamp(2.2rem,5.5vw,4.2rem);font-weight:700;color:var(--text-primary);margin-bottom:.75rem;letter-spacing:1px}
+.hero-title span{color:var(--accent-cyan);text-shadow:0 0 40px rgba(0,229,255,0.2)}
+.hero-subtitle{font-size:clamp(1rem,2.2vw,1.35rem);color:var(--text-secondary);max-width:650px;margin:0 auto 1.5rem;font-weight:400}
+.hero-value{font-size:clamp(.88rem,1.6vw,1.05rem);color:var(--accent-amber);font-weight:500;margin-bottom:2.5rem;letter-spacing:.5px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:1.2rem;justify-content:center;margin-bottom:2.5rem}
+.hero-stat{background:var(--bg-card);border:1px solid var(--border-accent);border-radius:var(--radius);padding:1rem 1.4rem;backdrop-filter:blur(10px);text-align:center;min-width:130px;transition:var(--transition)}
+.hero-stat:hover{border-color:var(--accent-cyan);box-shadow:var(--glow-cyan);transform:translateY(-3px)}
+.hero-stat .stat-value{font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--accent-cyan);display:block}
+.hero-stat .stat-label{font-size:.78rem;color:var(--text-secondary);margin-top:.2rem}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary-custom{background:linear-gradient(135deg,rgba(0,229,255,0.18),rgba(0,229,255,0.08));border:1px solid rgba(0,229,255,0.3);color:var(--accent-cyan);padding:.75rem 2rem;border-radius:var(--radius);font-family:var(--font-display);font-weight:600;font-size:.95rem;cursor:pointer;transition:var(--transition);letter-spacing:.5px}
+.btn-primary-custom:hover{background:linear-gradient(135deg,rgba(0,229,255,0.28),rgba(0,229,255,0.14));box-shadow:var(--glow-cyan);transform:translateY(-2px);color:var(--accent-cyan)}
+.btn-primary-custom:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px}
+.btn-secondary-custom{background:rgba(255,255,255,0.04);border:1px solid var(--border-color);color:var(--text-secondary);padding:.75rem 2rem;border-radius:var(--radius);font-family:var(--font-display);font-weight:600;font-size:.95rem;cursor:pointer;transition:var(--transition)}
+.btn-secondary-custom:hover{background:rgba(255,255,255,0.08);color:var(--text-primary);border-color:rgba(255,255,255,0.15)}
+.btn-secondary-custom:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px}
+
+/* Concept Map */
+.concept-map{position:relative;width:100%;max-width:700px;margin:3rem auto 0;aspect-ratio:7/5}
+.map-node{position:absolute;background:var(--bg-card);border:1px solid var(--border-accent);border-radius:var(--radius);padding:.6rem 1rem;backdrop-filter:blur(10px);cursor:pointer;transition:var(--transition);text-align:center;white-space:nowrap}
+.map-node:hover{border-color:var(--accent-cyan);box-shadow:var(--glow-cyan);transform:scale(1.08)}
+.map-node.center-node{background:linear-gradient(135deg,rgba(0,229,255,0.12),rgba(0,229,255,0.04));border-color:rgba(0,229,255,0.35);padding:1rem 1.6rem;font-family:var(--font-display);font-weight:700;font-size:1.1rem;color:var(--accent-cyan);letter-spacing:1px}
+.map-node .node-icon{font-size:1.1rem;margin-right:.35rem}
+.map-node .node-label{font-size:.78rem;font-weight:600;color:var(--text-primary)}
+.map-lines{position:absolute;inset:0;pointer-events:none}
+
+/* Sections */
+.section-block{padding:5rem 1rem}
+.section-header{text-align:center;margin-bottom:3.5rem}
+.section-header h2{font-size:clamp(1.6rem,3.5vw,2.4rem);color:var(--text-primary);margin-bottom:.6rem;letter-spacing:.5px}
+.section-header p{color:var(--text-secondary);max-width:600px;margin:0 auto;font-size:1rem}
+.accent-line{width:60px;height:3px;background:var(--accent-cyan);margin:1rem auto 0;border-radius:2px;box-shadow:0 0 12px rgba(0,229,255,0.3)}
+
+/* Bento Grid */
+.bento-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;max-width:1100px;margin:0 auto}
+.bento-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1.8rem;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;backdrop-filter:blur(8px)}
+.bento-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--accent-cyan),transparent);opacity:0;transition:var(--transition)}
+.bento-card:hover{background:var(--bg-card-hover);border-color:var(--border-accent);box-shadow:var(--glow-cyan);transform:translateY(-4px)}
+.bento-card:hover::before{opacity:1}
+.bento-card:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:2px}
+.bento-card .card-icon{font-size:1.8rem;margin-bottom:.8rem;display:block}
+.bento-card .card-title{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--text-primary);margin-bottom:.4rem}
+.bento-card .card-desc{font-size:.82rem;color:var(--text-secondary);line-height:1.5}
+.bento-card.span-2{grid-column:span 2}
+.bento-card.accent-cyan .card-icon{color:var(--accent-cyan)}
+.bento-card.accent-amber .card-icon{color:var(--accent-amber)}
+.bento-card.accent-teal .card-icon{color:var(--accent-teal)}
+.bento-card.accent-orange .card-icon{color:var(--accent-orange)}
+.bento-card.accent-rose .card-icon{color:var(--accent-rose)}
+
+/* Court */
+.court-container{max-width:800px;margin:0 auto}
+.court-svg-wrapper{background:var(--bg-card);border:1px solid var(--border-accent);border-radius:var(--radius-lg);padding:1.5rem;backdrop-filter:blur(8px);position:relative;overflow:hidden}
+.court-svg-wrapper::after{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 40%,rgba(0,229,255,0.03),transparent 50%);pointer-events:none}
+.court-svg{width:100%;height:auto;display:block}
+.court-zone{fill:rgba(0,229,255,0.04);stroke:none;cursor:pointer;transition:fill 0.3s}
+.court-zone:hover{fill:rgba(0,229,255,0.12)}
+.court-zone:hover .zone-tooltip{opacity:1}
+.zone-tooltip-bg{fill:rgba(6,11,24,0.92);stroke:var(--accent-cyan);stroke-width:0.5;rx:4}
+.zone-tooltip-text{fill:var(--text-primary);font-size:5.5px;font-family:'Outfit',sans-serif}
+.court-legend{display:flex;flex-wrap:wrap;gap:1.2rem;margin-top:1.2rem;justify-content:center}
+.legend-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;color:var(--text-secondary)}
+.legend-dot{width:10px;height:10px;border-radius:3px;flex-shrink:0}
+
+/* Position Cards */
+.positions-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.2rem;max-width:1100px;margin:0 auto}
+.pos-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);overflow:hidden;transition:var(--transition);backdrop-filter:blur(8px)}
+.pos-card:hover{border-color:var(--border-accent);box-shadow:var(--glow-cyan);transform:translateY(-3px)}
+.pos-card-header{padding:1.2rem 1.4rem .8rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border-color)}
+.pos-number{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:1.15rem;color:#fff;flex-shrink:0}
+.pos-card-body{padding:1.2rem 1.4rem}
+.pos-role{font-size:.88rem;color:var(--text-secondary);margin-bottom:.8rem}
+.pos-attrs{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1rem}
+.pos-attr{background:rgba(255,255,255,0.04);border:1px solid var(--border-color);border-radius:20px;padding:.2rem .7rem;font-size:.72rem;color:var(--text-secondary)}
+.accordion-custom .accordion-button{background:var(--bg-card);color:var(--text-primary);font-family:var(--font-display);font-weight:600;font-size:.88rem;border:none;box-shadow:none;padding:.8rem 1.2rem}
+.accordion-custom .accordion-button:not(.collapsed){background:rgba(0,229,255,0.06);color:var(--accent-cyan)}
+.accordion-custom .accordion-button::after{filter:invert(1) brightness(2)}
+.accordion-custom .accordion-body{background:var(--bg-card);color:var(--text-secondary);font-size:.85rem;padding:1rem 1.2rem;line-height:1.6;border-top:1px solid var(--border-color)}
+
+/* Techniques */
+.techniques-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.4rem;max-width:1100px;margin:0 auto}
+.tech-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1.8rem;transition:var(--transition);backdrop-filter:blur(8px);position:relative;overflow:hidden}
+.tech-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:3px 3px 0 0}
+.tech-card:hover{border-color:var(--border-accent);transform:translateY(-3px);box-shadow:var(--glow-cyan)}
+.tech-card.cyan-accent::after{background:var(--accent-cyan)}
+.tech-card.amber-accent::after{background:var(--accent-amber)}
+.tech-card.teal-accent::after{background:var(--accent-teal)}
+.tech-card .tech-icon{font-size:2rem;margin-bottom:1rem;display:block}
+.tech-card h4{font-size:1.1rem;margin-bottom:.5rem;color:var(--text-primary)}
+.tech-card .tech-desc{font-size:.88rem;color:var(--text-secondary);margin-bottom:1.2rem;line-height:1.6}
+.tech-detail{border-top:1px solid var(--border-color);padding-top:1rem;margin-top:.5rem}
+.tech-detail-item{margin-bottom:.7rem}
+.tech-detail-item .detail-label{font-size:.72rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);font-weight:600;margin-bottom:.2rem}
+.tech-detail-item .detail-text{font-size:.84rem;color:var(--text-secondary);line-height:1.5}
+
+/* Goalkeeper */
+.gk-section{max-width:1100px;margin:0 auto}
+.gk-hero{background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(245,158,11,0.02));border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-lg);padding:2.5rem;text-align:center;margin-bottom:2rem;position:relative;overflow:hidden}
+.gk-hero::before{content:'';position:absolute;top:-40%;right:-20%;width:60%;height:120%;background:radial-gradient(circle,rgba(245,158,11,0.06),transparent 60%);pointer-events:none}
+.gk-hero h3{font-size:1.6rem;color:var(--accent-amber);margin-bottom:.5rem}
+.gk-hero p{color:var(--text-secondary);font-size:1rem;max-width:500px;margin:0 auto}
+.gk-aspects{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem}
+.gk-aspect{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius);padding:1.4rem;transition:var(--transition);backdrop-filter:blur(8px)}
+.gk-aspect:hover{border-color:rgba(245,158,11,0.3);box-shadow:var(--glow-amber);transform:translateY(-2px)}
+.gk-aspect .aspect-icon{font-size:1.5rem;color:var(--accent-amber);margin-bottom:.7rem;display:block}
+.gk-aspect h5{font-size:.92rem;color:var(--text-primary);margin-bottom:.4rem;font-family:var(--font-display)}
+.gk-aspect p{font-size:.82rem;color:var(--text-secondary);line-height:1.55}
+
+/* Tactics */
+.tactics-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.2rem;max-width:1100px;margin:0 auto}
+.tactic-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:1.6rem;transition:var(--transition);backdrop-filter:blur(8px)}
+.tactic-card:hover{border-color:var(--border-accent);box-shadow:var(--glow-cyan);transform:translateY(-3px)}
+.tactic-card .tactic-icon{font-size:1.4rem;margin-bottom:.8rem;display:block;color:var(--accent-teal)}
+.tactic-card h4{font-size:1rem;margin-bottom:.5rem;color:var(--text-primary);font-family:var(--font-display)}
+.tactic-card .tactic-desc{font-size:.84rem;color:var(--text-secondary);margin-bottom:1rem;line-height:1.55}
+.tactic-card .tactic-purpose{background:rgba(20,184,166,0.06);border-left:3px solid var(--accent-teal);padding:.6rem .8rem;border-radius:0 var(--radius-sm) var(--radius-sm) 0;margin-bottom:.8rem}
+.tactic-card .tactic-purpose .tp-label{font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:var(--accent-teal);font-weight:700;margin-bottom:.15rem}
+.tactic-card .tactic-purpose .tp-text{font-size:.82rem;color:var(--text-secondary)}
+.tactic-card .tactic-key{font-size:.78rem;color:var(--text-muted);font-style:italic}
+
+/* Quiz */
+.quiz-container{max-width:720px;margin:0 auto}
+.quiz-progress{height:4px;background:var(--border-color);border-radius:2px;margin-bottom:2rem;overflow:hidden}
+.quiz-progress-bar{height:100%;background:var(--accent-cyan);border-radius:2px;transition:width 0.5s ease;box-shadow:0 0 8px rgba(0,229,255,0.3)}
+.quiz-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:var(--radius-lg);padding:2.2rem;backdrop-filter:blur(8px)}
+.quiz-question-num{font-size:.78rem;color:var(--accent-cyan);font-weight:600;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.6rem}
+.quiz-question{font-size:1.1rem;color:var(--text-primary);margin-bottom:1.5rem;font-weight:500;line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:.7rem}
+.quiz-option{background:rgba(255,255,255,0.02);border:1px solid var(--border-color);border-radius:var(--radius);padding:1rem 1.2rem;cursor:pointer;transition:var(--transition);font-size:.9rem;color:var(--text-secondary);text-align:left;width:100%;display:flex;align-items:center;gap:.8rem}
+.quiz-option:hover{border-color:var(--border-accent);background:rgba(0,229,255,0.04);color:var(--text-primary)}
+.quiz-option:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:2px}
+.quiz-option .opt-letter{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:.82rem;background:rgba(255,255,255,0.04);color:var(--text-muted);flex-shrink:0;transition:var(--transition)}
+.quiz-option:hover .opt-letter{background:rgba(0,229,255,0.1);color:var(--accent-cyan)}
+.quiz-option.correct{border-color:var(--accent-teal);background:rgba(20,184,166,0.08);color:var(--accent-teal)}
+.quiz-option.correct .opt-letter{background:var(--accent-teal);color:#fff}
+.quiz-option.wrong{border-color:var(--accent-rose);background:rgba(244,63,94,0.08);color:var(--accent-rose)}
+.quiz-option.wrong .opt-letter{background:var(--accent-rose);color:#fff}
+.quiz-option.disabled{pointer-events:none;opacity:0.6}
+.quiz-feedback{margin-top:1.2rem;padding:1rem;border-radius:var(--radius);font-size:.88rem;display:none;line-height:1.55}
+.quiz-feedback.show{display:block}
+.quiz-feedback.correct-fb{background:rgba(20,184,166,0.08);border:1px solid rgba(20,184,166,0.2);color:var(--accent-teal)}
+.quiz-feedback.wrong-fb{background:rgba(244,63,94,0.08);border:1px solid rgba(244,63,94,0.2);color:var(--accent-rose)}
+.quiz-next{margin-top:1.2rem;display:none}
+.quiz-next.show{display:inline-block}
+.quiz-results{text-align:center;padding:2rem;display:none}
+.quiz-results.show{display:block}
+.quiz-score{font-family:var(--font-display);font-size:3rem;font-weight:700;margin-bottom:.5rem}
+.quiz-score.great{color:var(--accent-teal)}
+.quiz-score.good{color:var(--accent-amber)}
+.quiz-score.needs{color:var(--accent-rose)}
+.quiz-results p{color:var(--text-secondary);margin-bottom:1.5rem;font-size:1rem}
+.btn-restart{background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.25);color:var(--accent-cyan);padding:.7rem 1.8rem;border-radius:var(--radius);font-family:var(--font-display);font-weight:600;font-size:.9rem;cursor:pointer;transition:var(--transition)}
+.btn-restart:hover{background:rgba(0,229,255,0.18);box-shadow:var(--glow-cyan)}
+.btn-restart:focus-visible{outline:2px solid var(--accent-cyan);outline-offset:3px}
+
+/* Footer */
+.footer-bar{background:var(--bg-card);border-top:1px solid var(--border-color);padding:2.5rem 1rem;backdrop-filter:blur(8px)}
+.footer-bar .takeaway{max-width:800px;margin:0 auto;text-align:center}
+.footer-bar h3{font-family:var(--font-display);font-size:1.2rem;color:var(--accent-cyan);margin-bottom:1rem}
+.takeaway-chips{display:flex;flex-wrap:wrap;gap:.6rem;justify-content:center}
+.takeaway-chip{background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.12);border-radius:20px;padding:.4rem 1rem;font-size:.82rem;color:var(--text-secondary);transition:var(--transition)}
+.takeaway-chip:hover{border-color:var(--accent-cyan);color:var(--accent-cyan)}
+.footer-copy{text-align:center;margin-top:1.5rem;font-size:.75rem;color:var(--text-muted)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Reduced motion */
+@media(prefers-reduced-motion:reduce){
+.reveal{opacity:1;transform:none;transition:none}
+.map-node,.bento-card,.pos-card,.tech-card,.gk-aspect,.tactic-card,.quiz-option,.hero-stat{transition:none !important}
+#particles-canvas{display:none}
+html{scroll-behavior:auto}
+}
+
+/* Responsive */
+@media(max-width:991px){
+.bento-grid{grid-template-columns:repeat(2,1fr)}
+.bento-card.span-2{grid-column:span 2}
+.concept-map{max-width:500px;aspect-ratio:5/4}
+}
+@media(max-width:767px){
+.bento-grid{grid-template-columns:1fr}
+.bento-card.span-2{grid-column:span 1}
+.hero-stats{gap:.8rem}
+.hero-stat{min-width:110px;padding:.8rem 1rem}
+.concept-map{display:none}
+.section-block{padding:3.5rem .8rem}
+.positions-grid{grid-template-columns:1fr}
+.techniques-grid{grid-template-columns:1fr}
+.tactics-grid{grid-template-columns:1fr}
+.gk-aspects{grid-template-columns:1fr}
+.navbar-custom .nav-link{padding:.4rem .6rem;font-size:.8rem}
+}
+</style>
 </head>
-
 <body>
-    <p><a class="skip-link" href="#main-content">Saltar ** contenido</a><canvas id="particles-canvas" aria-hidden="true"><br></canvas></p>
-    <div class="content-wrap"><!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" role="navigation" aria-label="Navegación principal">
-            <div class="container-fluid px-3 px-lg-4"><a class="navbar-brand" href="#hero">BALONMANO</a> <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">&nbsp;</button>
-                <div id="mainNav" class="collapse navbar-collapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="#hub">Modulos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#court">Cancha</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#positions">Posiciones</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#techniques">Tecnicas</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#goalkeeper">Portero</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#tactics">Tactica</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#quiz">Test</a></li>
-                    </ul><button id="contrastToggle" class="btn-contrast" aria-label="Alternar alto contraste">Contraste</button>
-                </div>
-            </div>
-        </nav>
-        <main id="main-content"><!-- Hero -->
-            <section id="hero" class="hero-section" aria-label="Inicio">
-                <div class="hero-bg-gradient">&nbsp;</div>
-                <div class="hero-content">
-                    <h1 class="hero-title">Dinamica y ******* del Balonmano</h1>
-                    <p class="hero-subtitle">******* educativo interactivo para ********** los fundamentos t&aacute;cticos, las posiciones, las t&eacute;cnicas de *********** y la din&aacute;mica de ***** *** balonmano.</p>
-                    <p class="hero-value">Conocimiento aplicable. Comprensi&oacute;n real. A tu propio ritmo.</p>
-                    <div id="heroStats" class="hero-stats"><br></div>
-                    <div class="hero-btns"><a class="btn-primary-custom" href="#hub">Explorar modulos</a> <a class="btn-secondary-custom" href="#quiz">Autoevaluarme</a></div><!-- Concept Map -->
-                    <div id="conceptMap" class="concept-map" aria-label="Mapa conceptual de contenidos"><br></div>
-                </div>
-            </section><!-- Hub / Bento Grid -->
-            <section id="hub" class="section-block" aria-label="Hub de contenidos">
-                <div class="section-header reveal">
-                    <h2>****** de Contenidos</h2>
-                    <p>Explora cada modulo ** forma aut&oacute;noma. **** tarjeta te ***** a una secci&oacute;n completa.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div id="bentoGrid" class="bento-grid"><br></div>
-            </section><!-- Court -->
-            <section id="court" class="section-block" aria-label="La cancha de balonmano">
-                <div class="section-header reveal">
-                    <h2>La Cancha</h2>
-                    <p>*********** oficiales y ***** t&aacute;cticas del ******* de juego. Pasa el ****** ***** cada zona.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div class="court-container reveal">
-                    <div class="court-svg-wrapper"><svg class="court-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la cancha de balonmano de 40 por 20 metros">&nbsp;<!-- Fondo --> <!-- Zonas interactivas -->
-                            <rect class="court-zone" id="zone-left6" x="0" y="30" width="90" height="140" rx="0" opacity="0" data-zone="Área de 6m (izquierda): Solo el portero puede estar aquí. Los atacantes deben lanzar desde fuera.">&nbsp;<title>Área de 6m izquierda</title>&nbsp;</rect>
-                            <rect class="court-zone" id="zone-right6" x="310" y="30" width="90" height="140" rx="0" opacity="0" data-zone="Área de 6m (derecha): Solo el portero puede estar aquí. Los atacantes deben lanzar desde fuera.">&nbsp;<title>Á*** de 6m derecha</title>&nbsp;</rect> <!-- Líneas de banda --> <!-- Línea central -->
-                            <line x1="200" y1="5" x2="200" y2="195" stroke="rgba(0,229,255,0.35)" stroke-width="0.8"></line> <!-- Círculo central --> <!-- Área de 6m izquierda -->
-                            <path d="M 5,70 L 60,70 A 60,60 0 0,1 60,130 L 5,130" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.5)" stroke-width="1"></path> <!-- Área de 6m derecha -->
-                            <path d="M 395,70 L 340,70 A 60,60 0 0,0 340,130 L 395,130" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.5)" stroke-width="1"></path> <!-- Línea de 9m izquierda (discontinua) -->
-                            <path d="M 5,55 L 85,55 A 90,90 0 0,1 85,145 L 5,145" fill="none" stroke="rgba(245,158,11,0.35)" stroke-width="0.7" stroke-dasharray="4,3"></path> <!-- Línea de 9m derecha (discontinua) -->
-                            <path d="M 395,55 L 315,55 A 90,90 0 0,0 315,145 L 395,145" fill="none" stroke="rgba(245,158,11,0.35)" stroke-width="0.7" stroke-dasharray="4,3"></path> <!-- Marca de 7m izquierda -->
-                            <line x1="70" y1="97" x2="70" y2="103" stroke="var(--accent-amber)" stroke-width="1.5"></line> <!-- Marca de 7m derecha -->
-                            <line x1="330" y1="97" x2="330" y2="103" stroke="var(--accent-amber)" stroke-width="1.5"></line> <!-- Porterías --> <!-- Etiquetas --> <text x="33" y="102" fill="rgba(0,229,255,0.6)" font-size="5.5" text-anchor="middle" font-family="Outfit,sans-serif">6m</text> <text x="48" y="102" fill="rgba(245,158,11,0.5)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">9m</text> <text x="70" y="112" fill="var(--accent-amber)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">7m</text> <text x="367" y="102" fill="rgba(0,229,255,0.6)" font-size="5.5" text-anchor="middle" font-family="Outfit,sans-serif">6m</text> <text x="352" y="102" fill="rgba(245,158,11,0.5)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">9m</text> <text x="330" y="112" fill="var(--accent-amber)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">7m</text> <text x="200" y="103" fill="rgba(0,229,255,0.35)" font-size="5" text-anchor="middle" font-family="Outfit,sans-serif">CENTRO</text> <!-- Dimensiones --> <text x="200" y="195" fill="rgba(255,255,255,0.25)" font-size="5" text-anchor="middle" font-family="Chakra Petch,sans-serif">40 m</text> <text x="10" y="100" fill="rgba(255,255,255,0.25)" font-size="5" text-anchor="start" font-family="Chakra Petch,sans-serif" transform="rotate(-90,10,100)">20 m</text> &nbsp;
-                        </svg>
-                        <div id="courtTooltip" style="position: absolute; bottom: 1.2rem; left: 50%; transform: translateX(-50%); background: rgba(6,11,24,0.95); border: 1px solid var(--accent-cyan); border-radius: var(--radius-sm); padding: .6rem 1rem; font-size: .82rem; color: var(--text-primary); max-width: 90%; text-align: center; display: none; backdrop-filter: blur(8px); z-index: 5; pointer-events: none;"><br></div>
-                    </div>
-                    <div class="court-legend">
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: var(--accent-cyan);">&nbsp;</div>&Aacute;rea ** 6m
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: var(--accent-amber);">&nbsp;</div>L&iacute;nea ** 7m / 9m
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: var(--accent-rose);">&nbsp;</div>Porter&iacute;a
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-dot" style="background: rgba(255,255,255,0.25);">&nbsp;</div>Dimensiones: 40 x 20 m
-                        </div>
-                    </div>
-                </div>
-            </section><!-- Positions -->
-            <section id="positions" class="section-block" aria-label="Posiciones de juego">
-                <div class="section-header reveal">
-                    <h2>********** de Juego</h2>
-                    <p>Cada posici&oacute;n tiene una funci&oacute;n t&aacute;ctica espec&iacute;fica ****** del ******* ofensivo y defensivo.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div id="positionsGrid" class="positions-grid"><br></div>
-            </section><!-- Techniques -->
-            <section id="techniques" class="section-block" aria-label="Técnicas de lanzamiento">
-                <div class="section-header reveal">
-                    <h2>Tecnicas de Lanzamiento</h2>
-                    <p>Las **** t&eacute;****** fundamentales para ********* con efectividad frente a ** porter&iacute;a rival.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div id="techniquesGrid" class="techniques-grid"><br></div>
-            </section><!-- Goalkeeper -->
-            <section id="goalkeeper" class="section-block" aria-label="El portero">
-                <div class="section-header reveal">
-                    <h2>El Portero: Jugador Clave</h2>
-                    <p>M&aacute;s que ** guardameta: el cerebro defensivo y ** inicio del contraataque.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div class="gk-section reveal">
-                    <div class="gk-hero">
-                        <h3>El Portero</h3>
-                        <p>El jugador m&aacute;s determinante de ** cancha. Su rendimiento define resultados, organiza la defensa y genera oportunidades de contraataque.</p>
-                    </div>
-                    <div id="gkAspects" class="gk-aspects"><br></div>
-                </div>
-            </section><!-- Tactics -->
-            <section id="tactics" class="section-block" aria-label="Jugadas y dinámica táctica">
-                <div class="section-header reveal">
-                    <h2>******* y Dinamica Tactica</h2>
-                    <p>Las acciones *********** que desequilibran ******** y generan oportunidades ** gol.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div id="tacticsGrid" class="tactics-grid"><br></div>
-            </section><!-- Quiz -->
-            <section id="quiz" class="section-block" aria-label="Autoevaluación">
-                <div class="section-header reveal">
-                    <h2>Autoevaluacion</h2>
-                    <p>Pon a prueba ** comprensi&oacute;n de los conceptos clave del balonmano.</p>
-                    <div class="accent-line">&nbsp;</div>
-                </div>
-                <div class="quiz-container reveal">
-                    <div class="quiz-progress">
-                        <div id="quizProgressBar" class="quiz-progress-bar" style="width: 0%;"><br></div>
-                    </div>
-                    <div id="quizCard" class="quiz-card"><br></div>
-                    <div id="quizResults" class="quiz-results"><br></div>
-                </div>
-            </section>
-        </main><!-- Footer -->
-        <footer class="footer-bar" role="contentinfo">
-            <div class="takeaway">
-                <h3>Ideas Clave</h3>
-                <div id="takeawayChips" class="takeaway-chips"><br></div>
-            </div>
-            <p class="footer-copy">Infograf&iacute;a Interactiva: Din&aacute;mica y T&aacute;ctica del Balonmano &mdash; Recurso educativo para adultos</p>
-        </footer>
-    </div><!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        /* ===== DATOS DE LA APLICACIÓN ===== */
-        const appData = {
-          stats: [
-            { label: "Duración", value: "2×30 min", icon: "bi-clock-history" },
-            { label: "Jugadores", value: "7/equipo", icon: "bi-people-fill" },
-            { label: "Cancha", value: "40×20 m", icon: "bi-rulers" },
-            { label: "Objetivo", value: "Más goles", icon: "bi-trophy-fill" }
-          ],
-          hubModules: [
-            { id: "rules", title: "Reglas Basicas", desc: "Fundamentos reglamentarios del balonmano: duración, jugadores, infracciones y sanciones.", icon: "bi-book", accent: "accent-cyan", section: "#court", span: "span-2" },
-            { id: "court", title: "La Cancha", desc: "Dimensiones oficiales de 40×20 m, áreas, líneas y zonas tácticas.", icon: "bi-map", accent: "accent-teal", section: "#court" },
-            { id: "positions", title: "Posiciones", desc: "Las 7 posiciones: portero, extremos, laterales, central y pivote.", icon: "bi-people", accent: "accent-amber", section: "#positions" },
-            { id: "techniques", title: "Tecnicas de Lanzamiento", desc: "Suspensión, apoyo y cadera: cuándo, cómo y por qué usar cada técnica.", icon: "bi-lightning-charge", accent: "accent-orange", section: "#techniques" },
-            { id: "goalkeeper", title: "El Portero", desc: "El jugador clave: reflejos, visión, contraataque y defensa de 7m.", icon: "bi-shield-fill-check", accent: "accent-amber", section: "#goalkeeper" },
-            { id: "tactics", title: "Jugadas Tacticas", desc: "Cruce, bloqueo, transición, circulación y fijación defensiva.", icon: "bi-diagram-3", accent: "accent-teal", section: "#tactics", span: "span-2" },
-            { id: "data", title: "Datos Rapidos", desc: "Cifras clave y métricas esenciales del balonmano profesional.", icon: "bi-bar-chart-fill", accent: "accent-cyan", section: "#hub" },
-            { id: "quiz", title: "Autoevaluacion", desc: "Pon a prueba tu comprensión con preguntas de opción múltiple.", icon: "bi-pencil-square", accent: "accent-rose", section: "#quiz" }
-          ],
-          rules: [
-            { title: "Duración del partido", text: "Dos tiempos de 30 minutos con un descanso de 10 minutos. Si hay empate en eliminatorias, se juegan dos prórrogas de 5 minutos." },
-            { title: "Jugadores por equipo", text: "Cada equipo cuenta con 7 jugadores en cancha: 6 de campo y 1 portero. Se pueden realizar sustituciones ilimitadas." },
-            { title: "Control del balón", text: "El balón se controla con las yemas de los dedos, lo que permite mayor precisión en pases y lanzamientos." },
-            { title: "Regla de pasos", text: "Se permiten máximo 3 pasos con el balón en mano. Para avanzar más, se debe botar el balón (drible)." },
-            { title: "Área de 6 metros", text: "Solo el portero puede estar dentro del área de 6 metros. Los jugadores de campo deben lanzar desde fuera o antes de caer en el área." },
-            { title: "Lanzamiento de 7 metros", text: "Se otorga cuando una falta impide una clara ocasión de gol. El lanzador se enfrenta solo al portero desde la marca de 7m." }
-          ],
-          positions: [
-            { id: "portero", name: "Portero", number: 1, role: "Último defensor y primer atacante", attributes: ["Reflejos", "Posicionamiento", "Visión de juego"], offense: "Inicia el contraataque con pases largos y precisos. Su lectura del juego es clave para la transición rápida.", defense: "Protege la portería, organiza la defensa desde atrás y detiene lanzamientos directos.", color: "#f59e0b" },
-            { id: "ei", name: "Extremo Izquierdo", number: 2, role: "Velocidad y finalización en el ala izquierda", attributes: ["Velocidad", "Agilidad", "Lanzamiento angular"], offense: "Busca espacios en el ala para recibir y lanzar con ángulos cerrados. Atrae defensas para abrir el centro.", defense: "Presiona al extremo rival y recupera posición en la transición defensiva.", color: "#00e5ff" },
-            { id: "li", name: "Lateral Izquierdo", number: 3, role: "Creador de juego por el lado izquierdo", attributes: ["Potencia", "Visión", "Lanzamiento lejano"], offense: "Genera superioridad con penetraciones y pases. Su lanzamiento desde 9 metros es un arma fundamental.", defense: "Ocupa posiciones avanzadas en defensa para cortar la circulación rival.", color: "#14b8a6" },
-            { id: "central", name: "Central", number: 4, role: "Director del juego ofensivo", attributes: ["Inteligencia táctica", "Pase", "Liderazgo"], offense: "Distribuye el balón, toma decisiones clave y coordina las jugadas tácticas del equipo.", defense: "Eje de la defensa, coordina movimientos colectivos y coberturas.", color: "#f43f5e" },
-            { id: "ld", name: "Lateral Derecho", number: 5, role: "Creador de juego por el lado derecho", attributes: ["Potencia", "Precisión", "Lanzamiento lejano"], offense: "Espejo del lateral izquierdo. Genera desequilibrio con penetraciones y lanzamientos potentes desde 9m.", defense: "Cierra el lado derecho de la defensa y colabora en la marca del lateral rival.", color: "#8b5cf6" },
-            { id: "pivote", name: "Pivote", number: 6, role: "Ancla ofensiva en el corazón de la defensa rival", attributes: ["Fuerza", "Posicionamiento", "Bloqueo"], offense: "Se sitúa entre los defensas rivales, genera bloqueos, recibe pases cortos y desequilibra la defensa.", defense: "Avanza rápidamente para ocupar posiciones defensivas tras pérdida de balón.", color: "#ff6b35" },
-            { id: "ed", name: "Extremo Derecho", number: 7, role: "Velocidad y finalización en el ala derecha", attributes: ["Velocidad", "Agilidad", "Lanzamiento angular"], offense: "Busca espacios en el ala derecha para recibir y lanzar con ángulos cerrados y efecto.", defense: "Presiona al extremo rival y cierra el ala en transición defensiva.", color: "#22d3ee" }
-          ],
-          techniques: [
-            { name: "Lanzamiento en Suspension", desc: "Se ejecuta saltando antes de lanzar, ganando altura y ángulo sobre la defensa rival.", when: "Cuando el atacante necesita superar la barrera defensiva y buscar ángulos superiores a la portería.", advantage: "Mayor ángulo de tiro, dificultad para el portero para leer la trayectoria y capacidad de lanzar por encima de los defensas.", reading: "El lanzador debe leer la posición del portero, el bloqueo defensivo y el espacio disponible antes de saltar.", icon: "bi-arrow-up-circle", accent: "cyan-accent" },
-            { name: "Lanzamiento en Apoyo", desc: "Se ejecuta con ambos pies en el suelo, permitiendo mayor estabilidad y precisión en la colocación.", when: "Cuando el jugador tiene espacio libre desde 9 metros o necesita un lanzamiento rápido y dirigido a la escuadra.", advantage: "Mayor precisión en la colocación del balón, ejecución más rápida y menor tiempo de reacción para el portero.", reading: "El jugador debe detectar el espacio entre defensas y la posición del portero para dirigir el lanzamiento con precisión quirúrgica.", icon: "bi-signpost-2", accent: "amber-accent" },
-            { name: "Lanzamiento de Cadera", desc: "Se ejecuta con un movimiento rotacional de la cadera, generando potencia desde el tronco sin necesidad de espacio amplio.", when: "Cuando el jugador está marcado de cerca y necesita potencia rápida sin espacio para un brazo extendido.", advantage: "Genera potencia en espacios reducidos, ejecución rápida y efecto inesperado en la trayectoria del balón.", reading: "El jugador debe leer la presión defensiva cercana y encontrar el momento exacto para girar y lanzar con potencia sorpresiva.", icon: "bi-rotate", accent: "teal-accent" }
-          ],
-          goalkeeper: {
-            aspects: [
-              { title: "Seguridad Defensiva", text: "El portero es la última línea de defensa. Su capacidad de detener lanzamientos directos determina resultados. Un portero seguro transmite confianza a toda la defensa y reduce la efectividad rival.", icon: "bi-shield-check" },
-              { title: "Reflejos y Reaccion", text: "Los reflejos son fundamentales para detener lanzamientos de corta distancia. El tiempo de reacción ante un lanzamiento de 9 metros es inferior a 0.3 segundos.", icon: "bi-lightning-charge" },
-              { title: "Vision de Juego", text: "Un portero con buena visión anticipa jugadas, lee las intenciones del atacante y se posiciona estratégicamente antes del lanzamiento.", icon: "bi-eye" },
-              { title: "Inicio del Contraataque", text: "Tras detener un balón, el portero inicia el contraataque con un pase rápido y preciso. Esta transición es una de las armas más letales del balonmano moderno.", icon: "bi-arrow-right-circle" },
-              { title: "Defensa de 7 Metros", text: "La defensa del lanzamiento de 7 metros es una acción crítica. El portero debe leer el cuerpo del lanzador y decidir en fracciones de segundo hacia qué lado lanzarse.", icon: "bi-bullseye" }
-            ]
-          },
-          tactics: [
-            { name: "Cruce", desc: "Dos atacantes intercambian sus posiciones de forma coordinada. El jugador con balón avanza diagonalmente mientras su compañero cruza detrás o delante de él.", purpose: "Generar confusión defensiva y crear espacios para lanzamiento o penetración.", key: "El timing del cruce y el pase debe ser perfecto para sorprender a la defensa.", icon: "bi-arrow-left-right" },
-            { name: "Bloqueo del Pivote", desc: "El pivote se posiciona para bloquear el movimiento de un defensor, impidiendo que siga al atacante que se desplaza con balón.", purpose: "Librar a un compañero de su marca directa y crear un hueco para lanzamiento o penetración.", key: "El bloqueo debe ser legal: el pivote se posiciona sin movimiento activo hacia el defensor.", icon: "bi-person-fill-lock" },
-            { name: "Transicion Ofensiva", desc: "Paso rápido de defensa a ataque tras recuperar el balón. Se busca avanzar con velocidad antes de que la defensa rival se organice.", purpose: "Aprovechar el desorden defensivo del rival para crear situaciones de gol claras y sin oposición.", key: "La velocidad de ejecución es determinante. Los primeros 3-4 segundos tras la recuperación son cruciales.", icon: "bi-speedometer2" },
-            { name: "Circulacion Rapida", desc: "Movimiento continuo y veloz del balón entre los jugadores exteriores e interiores para desplazar a la defensa.", purpose: "Fatigar la defensa, generar huegos por acumulación y encontrar el momento óptimo para atacar el espacio.", key: "La paciencia es tan importante como la velocidad. El equipo debe leer cuándo acelerar y cuándo mantener posesión.", icon: "bi-arrow-repeat" },
-            { name: "Fijacion Defensiva", desc: "Un atacante atrae la atención de uno o varios defensores hacia su posición, liberando espacio para un compañero en otra zona.", purpose: "Crear superioridad numérica en otra zona de la cancha mediante atracción deliberada y sacrificio posicional.", key: "El jugador que fija debe ser una amenaza real de gol para que la defensa reaccione y se desplace.", icon: "bi-crosshair" }
-          ],
-          quiz: [
-            { question: "¿Cuáles son las dimensiones oficiales de una cancha de balonmano?", options: ["30 m × 15 m", "40 m × 20 m", "50 m × 25 m", "44 m × 22 m"], correct: 1, feedback: "La cancha oficial mide 40 metros de largo por 20 metros de ancho." },
-            { question: "¿Cuántos jugadores por equipo participan en un partido de balonmano?", options: ["5 jugadores", "6 jugadores", "7 jugadores", "8 jugadores"], correct: 2, feedback: "Cada equipo juega con 7 jugadores: 6 de campo y 1 portero." },
-            { question: "¿Qué técnica de lanzamiento se ejecuta saltando para ganar altura sobre la defensa?", options: ["Lanzamiento de cadera", "Lanzamiento en apoyo", "Lanzamiento en suspensión", "Lanzamiento de volea"], correct: 2, feedback: "El lanzamiento en suspensión se ejecuta saltando para ganar altura y ángulo sobre la defensa rival." },
-            { question: "¿Cuál es el rol principal del pivote en el ataque?", options: ["Distribuir el balón desde el centro", "Situarse entre los defensas rivales para generar bloqueos y desequilibrio", "Lanzar desde 9 metros", "Iniciar el contraataque tras recuperación"], correct: 1, feedback: "El pivote se sitúa entre los defensas rivales para generar bloqueos, recibir pases cortos y desequilibrar la defensa." },
-            { question: "¿Qué jugador es clave para iniciar el contraataque tras detener un lanzamiento?", options: ["El central", "El lateral", "El portero", "El extremo"], correct: 2, feedback: "El portero inicia el contraataque tras detener un balón, con pases rápidos y precisos a los jugadores avanzados." }
-          ],
-          takeaways: [
-            "Cancha: 40×20 m", "7 jugadores por equipo", "2 tiempos de 30 min",
-            "3 técnicas de lanzamiento", "El portero inicia el contraataque",
-            "El balón se controla con las yemas", "Máximo 3 pasos con balón",
-            "Solo el portero entra al área de 6m"
-          ]
-        };
-        
-        /* ===== RENDERIZADO DE COMPONENTES ===== */
-        
-        // Hero Stats
-        function renderHeroStats() {
-          const c = document.getElementById('heroStats');
-          c.innerHTML = appData.stats.map(s => `
-            <div class="hero-stat" tabindex="0" aria-label="${s.label}: ${s.value}">
-              <span class="stat-value"><i class="bi ${s.icon} me-1"></i>${s.value}</span>
-              <span class="stat-label">${s.label}</span>
-            </div>
-          `).join('');
-        }
-        
-        // Concept Map
-        function renderConceptMap() {
-          const map = document.getElementById('conceptMap');
-          const nodes = [
-            { label: "Reglas", icon: "bi-book", angle: -90 },
-            { label: "Cancha", icon: "bi-map", angle: -45 },
-            { label: "Posiciones", icon: "bi-people", angle: 0 },
-            { label: "Tecnicas", icon: "bi-lightning", angle: 45 },
-            { label: "Portero", icon: "bi-shield", angle: 90 },
-            { label: "Tactica", icon: "bi-diagram-3", angle: 135 },
-            { label: "Datos", icon: "bi-bar-chart", angle: 180 },
-            { label: "Test", icon: "bi-pencil", angle: -135 }
-          ];
-          const cx = 50, cy = 50, r = 38;
-          let html = '<svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">';
-          nodes.forEach(n => {
-            const rad = n.angle * Math.PI / 180;
-            const nx = cx + r * Math.cos(rad);
-            const ny = cy + r * Math.sin(rad);
-            html += `<line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="rgba(0,229,255,0.18)" stroke-width="0.3">
-              <animate attributeName="stroke-opacity" values="0.18;0.35;0.18" dur="3s" repeatCount="indefinite"/>
-            </line>`;
-          });
-          html += '</svg>';
-          **** += `<div class="map-node center-node" style="left:50%;top:50%;transform:translate(-50%,-50%)">BALONMANO</div>`;
-          nodes.forEach(n => {
-            const rad = n.angle * Math.PI / 180;
-            const nx = cx + r * Math.cos(rad);
-            const ny = cy + r * Math.sin(rad);
-            html += `<div class="map-node" style="left:${nx}%;top:${ny}%;transform:translate(-50%,-50%)">
-              <span class="node-icon"><i class="bi ${n.icon}"></i></span>
-              <span class="node-label">${n.label}</span>
-            </div>`;
-          });
-          map.innerHTML = html;
-        }
-        
-        // Bento Grid
-        function renderBentoGrid() {
-          const c = document.getElementById('bentoGrid');
-          c.innerHTML = appData.hubModules.map(m => `
-            <div class="bento-card ${m.accent} ${m.span || ''}" tabindex="0" role="button"
-                 aria-label="Ir a ${m.title}" onclick="document.querySelector('${m.section}').scrollIntoView({behavior:'smooth'})"
-                 onkeydown="if(event.key==='Enter')this.click()">
-              <span class="card-icon"><i class="bi ${m.icon}"></i></span>
-              <div class="card-title">${m.title}</div>
-              <div class="card-desc">${m.desc}</div>
-            </div>
-          `).join('');
-        }
-        
-        // Positions Grid
-        function renderPositions() {
-          const c = document.getElementById('positionsGrid');
-          const accId = 'posAccordion';
-          c.innerHTML = appData.positions.map((p, i) => `
-            <div class="pos-card" tabindex="0">
-              <div class="pos-card-header">
-                <div class="pos-number" style="background:${p.color}">${p.number}</div>
-                <div>
-                  <h4 style="font-family:var(--font-display);font-size:1.05rem;margin:0;color:var(--text-primary)">${p.name}</h4>
-                  <div style="font-size:.8rem;color:${p.color};font-weight:500">${p.role}</div>
-                </div>
-              </div>
-              <div class="pos-card-body">
-                <div class="pos-attrs">${p.attributes.map(a => `<span class="pos-attr">${a}</span>`).join('')}</div>
-                <div class="accordion accordion-custom" id="${accId}${i}">
-                  <div class="accordion-item" style="background:transparent;border:none">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#posCollapse${i}" aria-expanded="false" aria-controls="posCollapse${i}">
-                        Rol ofensivo
-                      </button>
-                    </h2>
-                    <div id="posCollapse${i}" class="accordion-collapse collapse" data-bs-parent="#${accId}${i}">
-                      <div class="accordion-body p-2">${p.offense}</div>
-                    </div>
-                  </div>
-                  <div class="accordion-item" style="background:transparent;border:none">
-                    <h2 class="accordion-header">
-                      <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#posDef${i}" aria-expanded="false" aria-controls="posDef${i}">
-                        Rol defensivo
-                      </button>
-                    </h2>
-                    <div id="posDef${i}" class="accordion-collapse collapse" data-bs-parent="#${accId}${i}">
-                      <div class="accordion-body p-2">${p.defense}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          `).join('');
-        }
-        
-        // Techniques Grid
-        function renderTechniques() {
-          const c = document.getElementById('techniquesGrid');
-          c.innerHTML = appData.techniques.map(t => `
-            <div class="tech-card ${t.accent}" tabindex="0">
-              <span class="tech-icon"><i class="bi ${t.icon}"></i></span>
-              <h4>${t.name}</h4>
-              <p class="tech-desc">${t.desc}</p>
-              <div class="tech-detail">
-                <div class="tech-detail-item">
-                  <div class="detail-label">****** usar</div>
-                  <div class="detail-text">${t.when}</div>
-                </div>
-                <div class="tech-detail-item">
-                  <div class="detail-label">Ventaja</div>
-                  <div class="detail-text">${t.advantage}</div>
-                </div>
-                <div class="tech-detail-item">
-                  <div class="detail-label">******* tactica</div>
-                  <div class="detail-text">${t.reading}</div>
-                </div>
-              </div>
-            </div>
-          `).join('');
-        }
-        
-        // Goalkeeper
-        function renderGoalkeeper() {
-          const c = document.getElementById('gkAspects');
-          c.innerHTML = appData.goalkeeper.aspects.map(a => `
-            <div class="gk-aspect" tabindex="0">
-              <span class="aspect-icon"><i class="bi ${a.icon}"></i></span>
-              <h5>${a.title}</h5>
-              <p>${a.text}</p>
-            </div>
-          `).join('');
-        }
-        
-        // Tactics
-        function renderTactics() {
-          const c = document.getElementById('tacticsGrid');
-          c.innerHTML = appData.tactics.map(t => `
-            <div class="tactic-card" tabindex="0">
-              <span class="tactic-icon"><i class="bi ${t.icon}"></i></span>
-              <h4>${t.name}</h4>
-              <p class="tactic-desc">${t.desc}</p>
-              <div class="tactic-purpose">
-                <div class="tp-label">Proposito</div>
-                <div class="tp-text">${t.purpose}</div>
-              </div>
-              <div class="tactic-key"><i class="bi bi-key me-1"></i>${t.key}</div>
-            </div>
-          `).join('');
-        }
-        
-        // Takeaways
-        function renderTakeaways() {
-          const c = document.getElementById('takeawayChips');
-          c.innerHTML = appData.takeaways.map(t => `<span class="takeaway-chip">${t}</span>`).join('');
-        }
-        
-        /* ===== QUIZ ===== */
-        let quizState = { current: 0, score: 0, answered: false };
-        
-        function renderQuiz() {
-          quizState = { current: 0, score: 0, answered: false };
-          document.getElementById('quizResults').classList.remove('show');
-          document.getElementById('quizResults').style.display = 'none';
-          document.getElementById('quizCard').style.display = 'block';
-          renderQuizQuestion();
-        }
-        
-        function renderQuizQuestion() {
-          const card = document.getElementById('quizCard');
-          const q = appData.quiz[quizState.current];
-          const total = appData.quiz.length;
-          const pct = ((quizState.current) / total * 100);
-          document.getElementById('quizProgressBar').style.width = pct + '%';
-        
-          const letters = ['A', 'B', 'C', 'D'];
-          card.innerHTML = `
-            <div class="quiz-question-num">Pregunta ${quizState.current + 1} de ${total}</div>
-            <div class="quiz-question">${q.question}</div>
-            <div class="quiz-options">
-              ${q.options.map((o, i) => `
-                <button class="quiz-option" onclick="answerQuiz(${i})" aria-label="Opción ${letters[i]}: ${o}">
-                  <span class="opt-letter">${letters[i]}</span>
-                  <span>${o}</span>
-                </button>
-              `).join('')}
-            </div>
-            <div class="quiz-feedback" id="quizFeedback"></div>
-            <button class="btn-primary-custom quiz-next" id="quizNext" onclick="nextQuizQuestion()">
-              ${quizState.current < total - 1 ? 'Siguiente pregunta' : 'Ver resultados'}
-            </button>
-          `;
-          quizState.answered = false;
-        }
-        
-        function answerQuiz(idx) {
-          if (quizState.answered) return;
-          quizState.answered = true;
-          const q = appData.quiz[quizState.current];
-          const opts = document.querySelectorAll('.quiz-option');
-          const fb = document.getElementById('quizFeedback');
-          const nxt = document.getElementById('quizNext');
-        
-          opts.forEach((o, i) => {
-            if (i === q.correct) o.classList.add('correct');
-            if (i === idx && idx !== q.correct) o.classList.add('wrong');
-            if (i !== idx && i !== q.correct) o.classList.add('disabled');
-          });
-        
-          if (idx === q.correct) {
-            quizState.score++;
-            fb.className = 'quiz-feedback show correct-fb';
-            fb.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Correcto. ' + q.feedback;
-          } else {
-            fb.className = 'quiz-feedback show wrong-fb';
-            fb.innerHTML = '<i class="bi bi-x-circle-fill me-2"></i>Incorrecto. ' + q.feedback;
-          }
-          nxt.classList.add('show');
-        }
-        
-        function nextQuizQuestion() {
-          quizState.current++;
-          if (quizState.current >= appData.quiz.length) {
-            showQuizResults();
-          } else {
-            renderQuizQuestion();
-          }
-        }
-        
-        function showQuizResults() {
-          document.getElementById('quizCard').style.display = 'none';
-          const res = document.getElementById('quizResults');
-          const total = appData.quiz.length;
-          const pct = Math.round((quizState.score / total) * 100);
-          document.getElementById('quizProgressBar').style.width = '100%';
-        
-          let cls = 'needs';
-          let msg = 'Te recomendamos repasar los contenidos y volver a intentarlo.';
-          if (pct >= 80) { cls = 'great'; msg = 'Excelente comprensión de los fundamentos del balonmano.'; }
-          else if (pct >= 60) { cls = 'good'; msg = 'Buena base de conocimiento. Repasa los módulos donde fallaste.'; }
-        
-          res.innerHTML = `
-            <div class="quiz-score ${cls}">${quizState.score}/${total}</div>
-            <p>${msg}</p>
-            <p style="color:var(--text-muted);font-size:.88rem;margin-bottom:1.5rem">${pct}% de aciertos</p>
-            <button class="btn-restart" onclick="renderQuiz()"><i class="bi bi-arrow-counterclockwise me-2"></i>Reiniciar test</button>
-          `;
-          res.style.display = 'block';
-          res.classList.add('show');
-        }
-        
-        /* ===== COURT TOOLTIP ===== */
-        function initCourtInteractivity() {
-          const zones = document.querySelectorAll('.court-zone');
-          const tooltip = document.getElementById('courtTooltip');
-          const wrapper = tooltip.closest('.court-svg-wrapper');
-          zones.forEach(z => {
-            z.addEventListener('mouseenter', () => {
-              tooltip.textContent = z.getAttribute('data-zone');
-              tooltip.style.display = 'block';
-            });
-            z.addEventListener('mouseleave', () => {
-              tooltip.style.display = 'none';
-            });
-            z.addEventListener('focus', () => {
-              tooltip.textContent = z.getAttribute('data-zone');
-              tooltip.style.display = 'block';
-            });
-            z.addEventListener('blur', () => {
-              tooltip.style.display = 'none';
-            });
-          });
-        }
-        
-        /* ===== PARTICLES ===== */
-        function initParticles() {
-          const canvas = document.getElementById('particles-canvas');
-          const ctx = canvas.getContext('2d');
-          let w, h, particles = [];
-          const PARTICLE_COUNT = 60;
-          const MAX_DIST = 120;
-        
-          function resize() {
-            w = canvas.width = window.innerWidth;
-            h = canvas.height = window.innerHeight;
-          }
-        
-          function createParticles() {
-            particles = [];
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-              particles.push({
-                x: Math.random() * w,
-                y: Math.random() * h,
-                vx: (Math.random() - 0.5) * 0.4,
-                vy: (Math.random() - 0.5) * 0.4,
-                r: Math.random() * 1.5 + 0.5
-              });
-            }
-          }
-        
-          function animate() {
-            ctx.clearRect(0, 0, w, h);
-            particles.forEach(p => {
-              p.x += p.vx;
-              p.y += p.vy;
-              if (p.x < 0) p.x = w;
-              if (p.x > w) p.x = 0;
-              if (p.y < 0) p.y = h;
-              if (p.y > h) p.y = 0;
-              ctx.beginPath();
-              ctx.arc(p.x, p.y, Math.max(0.5, p.r), 0, Math.PI * 2);
-              ctx.fillStyle = 'rgba(0,229,255,0.25)';
-              ctx.fill();
-            });
-            for (let i = 0; i < particles.length; i++) {
-              for (let j = i + 1; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const dist = Math.sqrt(dx * dx + dy * dy);
-                if (dist < MAX_DIST) {
-                  ctx.beginPath();
-                  ctx.moveTo(particles[i].x, particles[i].y);
-                  ctx.lineTo(particles[j].x, particles[j].y);
-                  ctx.strokeStyle = `rgba(0,229,255,${0.08 * (1 - dist / MAX_DIST)})`;
-                  ctx.lineWidth = 0.5;
-                  ctx.stroke();
-                }
-              }
-            }
-            requestAnimationFrame(animate);
-          }
-        
-          const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-          if (!mq.matches) {
-            resize();
-            createParticles();
-            animate();
-            window.addEventListener('resize', () => { resize(); createParticles(); });
-          }
-        }
-        
-        /* ===== SCROLL REVEAL ===== */
-        function initScrollReveal() {
-          const reveals = document.querySelectorAll('.reveal');
-          const observer = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-              if (e.isIntersecting) {
-                e.target.classList.add('visible');
-              }
-            });
-          }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-          reveals.forEach(r => observer.observe(r));
-        }
-        
-        /* ===== HIGH CONTRAST ===== */
-        function initContrastToggle() {
-          const btn = document.getElementById('contrastToggle');
-          let hc = false;
-          btn.addEventListener('click', () => {
-            hc = !hc;
-            document.documentElement.classList.toggle('high-contrast', hc);
-            btn.setAttribute('aria-pressed', hc);
-          });
-        }
-        
-        /* ===== PWA MANIFEST & SERVICE WORKER ===== */
-        function initPWA() {
-          // Manifest
-          const manifest = {
-            name: "Dinámica y Táctica del Balonmano",
-            short_name: "Balonmano",
-            description: "Infografía interactiva educativa sobre balonmano",
-            start_url: ".",
-            display: "standalone",
-            background_color: "#0a1128",
-            theme_color: "#0a1128",
-            icons: [{
-              src: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#0a1128"/><circle cx="50" cy="50" r="30" fill="none" stroke="#00e5ff" stroke-width="4"/><circle cx="50" cy="50" r="8" fill="#00e5ff"/></svg>'),
-              sizes: "192x192",
-              type: "image/svg+xml"
-            }]
-          };
-          const mBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
-          const mUrl = URL.createObjectURL(mBlob);
-          const mLink = document.createElement('link');
-          mLink.rel = 'manifest';
-          mLink.href = mUrl;
-          document.head.appendChild(mLink);
-        
-          // Service Worker
-          if ('serviceWorker' in navigator) {
-            const swCode = `
-              const CACHE_NAME = 'balonmano-v1';
-              self.addEventListener('install', e => { self.skipWaiting(); });
-              self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
-              self.addEventListener('fetch', e => {
-                e.respondWith(
-                  caches.match(e.request).then(r => r || fetch(e.request).then(res => {
-                    if (res && res.status === 200 && res.type === 'basic') {
-                      const clone = res.clone();
-                      caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
-                    }
-                    return res;
-                  }).catch(() => new Response('Sin conexión', { status: 503 })))
-                );
-              });
-            `;
-            const swBlob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(swBlob);
-            navigator.serviceWorker.register(swUrl).catch(() => {});
-          }
-        }
-        
-        /* ===== INICIALIZACIÓN ===== */
-        document.addEventListener('DOMContentLoaded', () => {
-          renderHeroStats();
-          renderConceptMap();
-          renderBentoGrid();
-          renderPositions();
-          renderTechniques();
-          renderGoalkeeper();
-          renderTactics();
-          renderTakeaways();
-          renderQuiz();
-          initCourtInteractivity();
-          initParticles();
-          initScrollReveal();
-          initContrastToggle();
-          initPWA();
-        });
-    </script>
+<a href="#main-content" class="skip-link">Saltar al contenido</a>
+<canvas id="particles-canvas" aria-hidden="true"></canvas>
+<div class="content-wrap">
 
-<div style="color: red">Prueba de Word a HTML - por favor <a href="https://wordtohtml.net/site/payment">Go PRO</a> para obtener el HTML completo.</div>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top" role="navigation" aria-label="Navegación principal">
+<div class="container-fluid px-3 px-lg-4">
+<a class="navbar-brand" href="#hero"><i class="bi bi-hexagon-fill me-2" style="font-size:.9rem"></i>BALONMANO</a>
+<button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Abrir menú">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="mainNav">
+<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+<li class="nav-item"><a class="nav-link" href="#hub">Modulos</a></li>
+<li class="nav-item"><a class="nav-link" href="#court">Cancha</a></li>
+<li class="nav-item"><a class="nav-link" href="#positions">Posiciones</a></li>
+<li class="nav-item"><a class="nav-link" href="#techniques">Tecnicas</a></li>
+<li class="nav-item"><a class="nav-link" href="#goalkeeper">Portero</a></li>
+<li class="nav-item"><a class="nav-link" href="#tactics">Tactica</a></li>
+<li class="nav-item"><a class="nav-link" href="#quiz">Test</a></li>
+</ul>
+<button class="btn-contrast" id="contrastToggle" aria-label="Alternar alto contraste"><i class="bi bi-circle-half me-1"></i>Contraste</button>
+</div>
+</div>
+</nav>
+
+<main id="main-content">
+
+<!-- Hero -->
+<section class="hero-section" id="hero" aria-label="Inicio">
+<div class="hero-bg-gradient"></div>
+<div class="hero-content">
+<h1 class="hero-title">Dinamica y <span>Tactica</span> del Balonmano</h1>
+<p class="hero-subtitle">Recurso educativo interactivo para comprender los fundamentos tácticos, las posiciones, las técnicas de lanzamiento y la dinámica de juego del balonmano.</p>
+<p class="hero-value">Conocimiento aplicable. Comprensión real. A tu propio ritmo.</p>
+<div class="hero-stats" id="heroStats"></div>
+<div class="hero-btns">
+<a href="#hub" class="btn-primary-custom">Explorar modulos</a>
+<a href="#quiz" class="btn-secondary-custom">Autoevaluarme</a>
+</div>
+<!-- Concept Map -->
+<div class="concept-map" id="conceptMap" aria-label="Mapa conceptual de contenidos"></div>
+</div>
+</section>
+
+<!-- Hub / Bento Grid -->
+<section class="section-block" id="hub" aria-label="Hub de contenidos">
+<div class="section-header reveal">
+<h2>Centro de Contenidos</h2>
+<p>Explora cada modulo de forma autónoma. Cada tarjeta te lleva a una sección completa.</p>
+<div class="accent-line"></div>
+</div>
+<div class="bento-grid" id="bentoGrid"></div>
+</section>
+
+<!-- Court -->
+<section class="section-block" id="court" aria-label="La cancha de balonmano">
+<div class="section-header reveal">
+<h2>La Cancha</h2>
+<p>Dimensiones oficiales y zonas tácticas del terreno de juego. Pasa el cursor sobre cada zona.</p>
+<div class="accent-line"></div>
+</div>
+<div class="court-container reveal">
+<div class="court-svg-wrapper">
+<svg class="court-svg" viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Diagrama de la cancha de balonmano de 40 por 20 metros">
+<!-- Fondo -->
+<rect x="0" y="0" width="400" height="200" fill="#0d1a33" rx="4"/>
+<!-- Zonas interactivas -->
+<rect class="court-zone" id="zone-left6" x="0" y="30" width="90" height="140" rx="0" opacity="0" data-zone="Área de 6m (izquierda): Solo el portero puede estar aquí. Los atacantes deben lanzar desde fuera.">
+<title>Área de 6m izquierda</title></rect>
+<rect class="court-zone" id="zone-right6" x="310" y="30" width="90" height="140" rx="0" opacity="0" data-zone="Área de 6m (derecha): Solo el portero puede estar aquí. Los atacantes deben lanzar desde fuera.">
+<title>Área de 6m derecha</title></rect>
+<!-- Líneas de banda -->
+<rect x="5" y="5" width="390" height="190" fill="none" stroke="rgba(0,229,255,0.4)" stroke-width="1.5" rx="2"/>
+<!-- Línea central -->
+<line x1="200" y1="5" x2="200" y2="195" stroke="rgba(0,229,255,0.35)" stroke-width="0.8"/>
+<!-- Círculo central -->
+<circle cx="200" cy="100" r="15" fill="none" stroke="rgba(0,229,255,0.3)" stroke-width="0.7"/>
+<!-- Área de 6m izquierda -->
+<path d="M 5,70 L 60,70 A 60,60 0 0,1 60,130 L 5,130" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.5)" stroke-width="1"/>
+<!-- Área de 6m derecha -->
+<path d="M 395,70 L 340,70 A 60,60 0 0,0 340,130 L 395,130" fill="rgba(0,229,255,0.05)" stroke="rgba(0,229,255,0.5)" stroke-width="1"/>
+<!-- Línea de 9m izquierda (discontinua) -->
+<path d="M 5,55 L 85,55 A 90,90 0 0,1 85,145 L 5,145" fill="none" stroke="rgba(245,158,11,0.35)" stroke-width="0.7" stroke-dasharray="4,3"/>
+<!-- Línea de 9m derecha (discontinua) -->
+<path d="M 395,55 L 315,55 A 90,90 0 0,0 315,145 L 395,145" fill="none" stroke="rgba(245,158,11,0.35)" stroke-width="0.7" stroke-dasharray="4,3"/>
+<!-- Marca de 7m izquierda -->
+<line x1="70" y1="97" x2="70" y2="103" stroke="var(--accent-amber)" stroke-width="1.5"/>
+<!-- Marca de 7m derecha -->
+<line x1="330" y1="97" x2="330" y2="103" stroke="var(--accent-amber)" stroke-width="1.5"/>
+<!-- Porterías -->
+<rect x="0" y="88" width="6" height="24" fill="rgba(244,63,94,0.15)" stroke="var(--accent-rose)" stroke-width="0.8" rx="1"/>
+<rect x="394" y="88" width="6" height="24" fill="rgba(244,63,94,0.15)" stroke="var(--accent-rose)" stroke-width="0.8" rx="1"/>
+<!-- Etiquetas -->
+<text x="33" y="102" fill="rgba(0,229,255,0.6)" font-size="5.5" text-anchor="middle" font-family="Outfit,sans-serif">6m</text>
+<text x="48" y="102" fill="rgba(245,158,11,0.5)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">9m</text>
+<text x="70" y="112" fill="var(--accent-amber)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">7m</text>
+<text x="367" y="102" fill="rgba(0,229,255,0.6)" font-size="5.5" text-anchor="middle" font-family="Outfit,sans-serif">6m</text>
+<text x="352" y="102" fill="rgba(245,158,11,0.5)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">9m</text>
+<text x="330" y="112" fill="var(--accent-amber)" font-size="4.5" text-anchor="middle" font-family="Outfit,sans-serif">7m</text>
+<text x="200" y="103" fill="rgba(0,229,255,0.35)" font-size="5" text-anchor="middle" font-family="Outfit,sans-serif">CENTRO</text>
+<!-- Dimensiones -->
+<text x="200" y="195" fill="rgba(255,255,255,0.25)" font-size="5" text-anchor="middle" font-family="Chakra Petch,sans-serif">40 m</text>
+<text x="10" y="100" fill="rgba(255,255,255,0.25)" font-size="5" text-anchor="start" font-family="Chakra Petch,sans-serif" transform="rotate(-90,10,100)">20 m</text>
+</svg>
+<div id="courtTooltip" style="position:absolute;bottom:1.2rem;left:50%;transform:translateX(-50%);background:rgba(6,11,24,0.95);border:1px solid var(--accent-cyan);border-radius:var(--radius-sm);padding:.6rem 1rem;font-size:.82rem;color:var(--text-primary);max-width:90%;text-align:center;display:none;backdrop-filter:blur(8px);z-index:5;pointer-events:none"></div>
+</div>
+<div class="court-legend">
+<div class="legend-item"><div class="legend-dot" style="background:var(--accent-cyan)"></div>Área de 6m</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--accent-amber)"></div>Línea de 7m / 9m</div>
+<div class="legend-item"><div class="legend-dot" style="background:var(--accent-rose)"></div>Portería</div>
+<div class="legend-item"><div class="legend-dot" style="background:rgba(255,255,255,0.25)"></div>Dimensiones: 40 x 20 m</div>
+</div>
+</div>
+</section>
+
+<!-- Positions -->
+<section class="section-block" id="positions" aria-label="Posiciones de juego">
+<div class="section-header reveal">
+<h2>Posiciones de Juego</h2>
+<p>Cada posición tiene una función táctica específica dentro del sistema ofensivo y defensivo.</p>
+<div class="accent-line"></div>
+</div>
+<div class="positions-grid" id="positionsGrid"></div>
+</section>
+
+<!-- Techniques -->
+<section class="section-block" id="techniques" aria-label="Técnicas de lanzamiento">
+<div class="section-header reveal">
+<h2>Tecnicas de Lanzamiento</h2>
+<p>Las tres técnicas fundamentales para finalizar con efectividad frente a la portería rival.</p>
+<div class="accent-line"></div>
+</div>
+<div class="techniques-grid" id="techniquesGrid"></div>
+</section>
+
+<!-- Goalkeeper -->
+<section class="section-block" id="goalkeeper" aria-label="El portero">
+<div class="section-header reveal">
+<h2>El Portero: Jugador Clave</h2>
+<p>Más que un guardameta: el cerebro defensivo y el inicio del contraataque.</p>
+<div class="accent-line"></div>
+</div>
+<div class="gk-section reveal">
+<div class="gk-hero">
+<h3><i class="bi bi-shield-fill-check me-2"></i>El Portero</h3>
+<p>El jugador más determinante de la cancha. Su rendimiento define resultados, organiza la defensa y genera oportunidades de contraataque.</p>
+</div>
+<div class="gk-aspects" id="gkAspects"></div>
+</div>
+</section>
+
+<!-- Tactics -->
+<section class="section-block" id="tactics" aria-label="Jugadas y dinámica táctica">
+<div class="section-header reveal">
+<h2>Jugadas y Dinamica Tactica</h2>
+<p>Las acciones coordinadas que desequilibran defensas y generan oportunidades de gol.</p>
+<div class="accent-line"></div>
+</div>
+<div class="tactics-grid" id="tacticsGrid"></div>
+</section>
+
+<!-- Quiz -->
+<section class="section-block" id="quiz" aria-label="Autoevaluación">
+<div class="section-header reveal">
+<h2>Autoevaluacion</h2>
+<p>Pon a prueba tu comprensión de los conceptos clave del balonmano.</p>
+<div class="accent-line"></div>
+</div>
+<div class="quiz-container reveal">
+<div class="quiz-progress"><div class="quiz-progress-bar" id="quizProgressBar" style="width:0%"></div></div>
+<div class="quiz-card" id="quizCard"></div>
+<div class="quiz-results" id="quizResults"></div>
+</div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="footer-bar" role="contentinfo">
+<div class="takeaway">
+<h3><i class="bi bi-lightbulb me-2"></i>Ideas Clave</h3>
+<div class="takeaway-chips" id="takeawayChips"></div>
+</div>
+<p class="footer-copy">Infografía Interactiva: Dinámica y Táctica del Balonmano — Recurso educativo para adultos</p>
+</footer>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+/* ===== DATOS DE LA APLICACIÓN ===== */
+const appData = {
+  stats: [
+    { label: "Duración", value: "2×30 min", icon: "bi-clock-history" },
+    { label: "Jugadores", value: "7/equipo", icon: "bi-people-fill" },
+    { label: "Cancha", value: "40×20 m", icon: "bi-rulers" },
+    { label: "Objetivo", value: "Más goles", icon: "bi-trophy-fill" }
+  ],
+  hubModules: [
+    { id: "rules", title: "Reglas Basicas", desc: "Fundamentos reglamentarios del balonmano: duración, jugadores, infracciones y sanciones.", icon: "bi-book", accent: "accent-cyan", section: "#court", span: "span-2" },
+    { id: "court", title: "La Cancha", desc: "Dimensiones oficiales de 40×20 m, áreas, líneas y zonas tácticas.", icon: "bi-map", accent: "accent-teal", section: "#court" },
+    { id: "positions", title: "Posiciones", desc: "Las 7 posiciones: portero, extremos, laterales, central y pivote.", icon: "bi-people", accent: "accent-amber", section: "#positions" },
+    { id: "techniques", title: "Tecnicas de Lanzamiento", desc: "Suspensión, apoyo y cadera: cuándo, cómo y por qué usar cada técnica.", icon: "bi-lightning-charge", accent: "accent-orange", section: "#techniques" },
+    { id: "goalkeeper", title: "El Portero", desc: "El jugador clave: reflejos, visión, contraataque y defensa de 7m.", icon: "bi-shield-fill-check", accent: "accent-amber", section: "#goalkeeper" },
+    { id: "tactics", title: "Jugadas Tacticas", desc: "Cruce, bloqueo, transición, circulación y fijación defensiva.", icon: "bi-diagram-3", accent: "accent-teal", section: "#tactics", span: "span-2" },
+    { id: "data", title: "Datos Rapidos", desc: "Cifras clave y métricas esenciales del balonmano profesional.", icon: "bi-bar-chart-fill", accent: "accent-cyan", section: "#hub" },
+    { id: "quiz", title: "Autoevaluacion", desc: "Pon a prueba tu comprensión con preguntas de opción múltiple.", icon: "bi-pencil-square", accent: "accent-rose", section: "#quiz" }
+  ],
+  rules: [
+    { title: "Duración del partido", text: "Dos tiempos de 30 minutos con un descanso de 10 minutos. Si hay empate en eliminatorias, se juegan dos prórrogas de 5 minutos." },
+    { title: "Jugadores por equipo", text: "Cada equipo cuenta con 7 jugadores en cancha: 6 de campo y 1 portero. Se pueden realizar sustituciones ilimitadas." },
+    { title: "Control del balón", text: "El balón se controla con las yemas de los dedos, lo que permite mayor precisión en pases y lanzamientos." },
+    { title: "Regla de pasos", text: "Se permiten máximo 3 pasos con el balón en mano. Para avanzar más, se debe botar el balón (drible)." },
+    { title: "Área de 6 metros", text: "Solo el portero puede estar dentro del área de 6 metros. Los jugadores de campo deben lanzar desde fuera o antes de caer en el área." },
+    { title: "Lanzamiento de 7 metros", text: "Se otorga cuando una falta impide una clara ocasión de gol. El lanzador se enfrenta solo al portero desde la marca de 7m." }
+  ],
+  positions: [
+    { id: "portero", name: "Portero", number: 1, role: "Último defensor y primer atacante", attributes: ["Reflejos", "Posicionamiento", "Visión de juego"], offense: "Inicia el contraataque con pases largos y precisos. Su lectura del juego es clave para la transición rápida.", defense: "Protege la portería, organiza la defensa desde atrás y detiene lanzamientos directos.", color: "#f59e0b" },
+    { id: "ei", name: "Extremo Izquierdo", number: 2, role: "Velocidad y finalización en el ala izquierda", attributes: ["Velocidad", "Agilidad", "Lanzamiento angular"], offense: "Busca espacios en el ala para recibir y lanzar con ángulos cerrados. Atrae defensas para abrir el centro.", defense: "Presiona al extremo rival y recupera posición en la transición defensiva.", color: "#00e5ff" },
+    { id: "li", name: "Lateral Izquierdo", number: 3, role: "Creador de juego por el lado izquierdo", attributes: ["Potencia", "Visión", "Lanzamiento lejano"], offense: "Genera superioridad con penetraciones y pases. Su lanzamiento desde 9 metros es un arma fundamental.", defense: "Ocupa posiciones avanzadas en defensa para cortar la circulación rival.", color: "#14b8a6" },
+    { id: "central", name: "Central", number: 4, role: "Director del juego ofensivo", attributes: ["Inteligencia táctica", "Pase", "Liderazgo"], offense: "Distribuye el balón, toma decisiones clave y coordina las jugadas tácticas del equipo.", defense: "Eje de la defensa, coordina movimientos colectivos y coberturas.", color: "#f43f5e" },
+    { id: "ld", name: "Lateral Derecho", number: 5, role: "Creador de juego por el lado derecho", attributes: ["Potencia", "Precisión", "Lanzamiento lejano"], offense: "Espejo del lateral izquierdo. Genera desequilibrio con penetraciones y lanzamientos potentes desde 9m.", defense: "Cierra el lado derecho de la defensa y colabora en la marca del lateral rival.", color: "#8b5cf6" },
+    { id: "pivote", name: "Pivote", number: 6, role: "Ancla ofensiva en el corazón de la defensa rival", attributes: ["Fuerza", "Posicionamiento", "Bloqueo"], offense: "Se sitúa entre los defensas rivales, genera bloqueos, recibe pases cortos y desequilibra la defensa.", defense: "Avanza rápidamente para ocupar posiciones defensivas tras pérdida de balón.", color: "#ff6b35" },
+    { id: "ed", name: "Extremo Derecho", number: 7, role: "Velocidad y finalización en el ala derecha", attributes: ["Velocidad", "Agilidad", "Lanzamiento angular"], offense: "Busca espacios en el ala derecha para recibir y lanzar con ángulos cerrados y efecto.", defense: "Presiona al extremo rival y cierra el ala en transición defensiva.", color: "#22d3ee" }
+  ],
+  techniques: [
+    { name: "Lanzamiento en Suspension", desc: "Se ejecuta saltando antes de lanzar, ganando altura y ángulo sobre la defensa rival.", when: "Cuando el atacante necesita superar la barrera defensiva y buscar ángulos superiores a la portería.", advantage: "Mayor ángulo de tiro, dificultad para el portero para leer la trayectoria y capacidad de lanzar por encima de los defensas.", reading: "El lanzador debe leer la posición del portero, el bloqueo defensivo y el espacio disponible antes de saltar.", icon: "bi-arrow-up-circle", accent: "cyan-accent" },
+    { name: "Lanzamiento en Apoyo", desc: "Se ejecuta con ambos pies en el suelo, permitiendo mayor estabilidad y precisión en la colocación.", when: "Cuando el jugador tiene espacio libre desde 9 metros o necesita un lanzamiento rápido y dirigido a la escuadra.", advantage: "Mayor precisión en la colocación del balón, ejecución más rápida y menor tiempo de reacción para el portero.", reading: "El jugador debe detectar el espacio entre defensas y la posición del portero para dirigir el lanzamiento con precisión quirúrgica.", icon: "bi-signpost-2", accent: "amber-accent" },
+    { name: "Lanzamiento de Cadera", desc: "Se ejecuta con un movimiento rotacional de la cadera, generando potencia desde el tronco sin necesidad de espacio amplio.", when: "Cuando el jugador está marcado de cerca y necesita potencia rápida sin espacio para un brazo extendido.", advantage: "Genera potencia en espacios reducidos, ejecución rápida y efecto inesperado en la trayectoria del balón.", reading: "El jugador debe leer la presión defensiva cercana y encontrar el momento exacto para girar y lanzar con potencia sorpresiva.", icon: "bi-rotate", accent: "teal-accent" }
+  ],
+  goalkeeper: {
+    aspects: [
+      { title: "Seguridad Defensiva", text: "El portero es la última línea de defensa. Su capacidad de detener lanzamientos directos determina resultados. Un portero seguro transmite confianza a toda la defensa y reduce la efectividad rival.", icon: "bi-shield-check" },
+      { title: "Reflejos y Reaccion", text: "Los reflejos son fundamentales para detener lanzamientos de corta distancia. El tiempo de reacción ante un lanzamiento de 9 metros es inferior a 0.3 segundos.", icon: "bi-lightning-charge" },
+      { title: "Vision de Juego", text: "Un portero con buena visión anticipa jugadas, lee las intenciones del atacante y se posiciona estratégicamente antes del lanzamiento.", icon: "bi-eye" },
+      { title: "Inicio del Contraataque", text: "Tras detener un balón, el portero inicia el contraataque con un pase rápido y preciso. Esta transición es una de las armas más letales del balonmano moderno.", icon: "bi-arrow-right-circle" },
+      { title: "Defensa de 7 Metros", text: "La defensa del lanzamiento de 7 metros es una acción crítica. El portero debe leer el cuerpo del lanzador y decidir en fracciones de segundo hacia qué lado lanzarse.", icon: "bi-bullseye" }
+    ]
+  },
+  tactics: [
+    { name: "Cruce", desc: "Dos atacantes intercambian sus posiciones de forma coordinada. El jugador con balón avanza diagonalmente mientras su compañero cruza detrás o delante de él.", purpose: "Generar confusión defensiva y crear espacios para lanzamiento o penetración.", key: "El timing del cruce y el pase debe ser perfecto para sorprender a la defensa.", icon: "bi-arrow-left-right" },
+    { name: "Bloqueo del Pivote", desc: "El pivote se posiciona para bloquear el movimiento de un defensor, impidiendo que siga al atacante que se desplaza con balón.", purpose: "Librar a un compañero de su marca directa y crear un hueco para lanzamiento o penetración.", key: "El bloqueo debe ser legal: el pivote se posiciona sin movimiento activo hacia el defensor.", icon: "bi-person-fill-lock" },
+    { name: "Transicion Ofensiva", desc: "Paso rápido de defensa a ataque tras recuperar el balón. Se busca avanzar con velocidad antes de que la defensa rival se organice.", purpose: "Aprovechar el desorden defensivo del rival para crear situaciones de gol claras y sin oposición.", key: "La velocidad de ejecución es determinante. Los primeros 3-4 segundos tras la recuperación son cruciales.", icon: "bi-speedometer2" },
+    { name: "Circulacion Rapida", desc: "Movimiento continuo y veloz del balón entre los jugadores exteriores e interiores para desplazar a la defensa.", purpose: "Fatigar la defensa, generar huegos por acumulación y encontrar el momento óptimo para atacar el espacio.", key: "La paciencia es tan importante como la velocidad. El equipo debe leer cuándo acelerar y cuándo mantener posesión.", icon: "bi-arrow-repeat" },
+    { name: "Fijacion Defensiva", desc: "Un atacante atrae la atención de uno o varios defensores hacia su posición, liberando espacio para un compañero en otra zona.", purpose: "Crear superioridad numérica en otra zona de la cancha mediante atracción deliberada y sacrificio posicional.", key: "El jugador que fija debe ser una amenaza real de gol para que la defensa reaccione y se desplace.", icon: "bi-crosshair" }
+  ],
+  quiz: [
+    { question: "¿Cuáles son las dimensiones oficiales de una cancha de balonmano?", options: ["30 m × 15 m", "40 m × 20 m", "50 m × 25 m", "44 m × 22 m"], correct: 1, feedback: "La cancha oficial mide 40 metros de largo por 20 metros de ancho." },
+    { question: "¿Cuántos jugadores por equipo participan en un partido de balonmano?", options: ["5 jugadores", "6 jugadores", "7 jugadores", "8 jugadores"], correct: 2, feedback: "Cada equipo juega con 7 jugadores: 6 de campo y 1 portero." },
+    { question: "¿Qué técnica de lanzamiento se ejecuta saltando para ganar altura sobre la defensa?", options: ["Lanzamiento de cadera", "Lanzamiento en apoyo", "Lanzamiento en suspensión", "Lanzamiento de volea"], correct: 2, feedback: "El lanzamiento en suspensión se ejecuta saltando para ganar altura y ángulo sobre la defensa rival." },
+    { question: "¿Cuál es el rol principal del pivote en el ataque?", options: ["Distribuir el balón desde el centro", "Situarse entre los defensas rivales para generar bloqueos y desequilibrio", "Lanzar desde 9 metros", "Iniciar el contraataque tras recuperación"], correct: 1, feedback: "El pivote se sitúa entre los defensas rivales para generar bloqueos, recibir pases cortos y desequilibrar la defensa." },
+    { question: "¿Qué jugador es clave para iniciar el contraataque tras detener un lanzamiento?", options: ["El central", "El lateral", "El portero", "El extremo"], correct: 2, feedback: "El portero inicia el contraataque tras detener un balón, con pases rápidos y precisos a los jugadores avanzados." }
+  ],
+  takeaways: [
+    "Cancha: 40×20 m", "7 jugadores por equipo", "2 tiempos de 30 min",
+    "3 técnicas de lanzamiento", "El portero inicia el contraataque",
+    "El balón se controla con las yemas", "Máximo 3 pasos con balón",
+    "Solo el portero entra al área de 6m"
+  ]
+};
+
+/* ===== RENDERIZADO DE COMPONENTES ===== */
+
+// Hero Stats
+function renderHeroStats() {
+  const c = document.getElementById('heroStats');
+  c.innerHTML = appData.stats.map(s => `
+    <div class="hero-stat" tabindex="0" aria-label="${s.label}: ${s.value}">
+      <span class="stat-value"><i class="bi ${s.icon} me-1"></i>${s.value}</span>
+      <span class="stat-label">${s.label}</span>
+    </div>
+  `).join('');
+}
+
+// Concept Map
+function renderConceptMap() {
+  const map = document.getElementById('conceptMap');
+  const nodes = [
+    { label: "Reglas", icon: "bi-book", angle: -90 },
+    { label: "Cancha", icon: "bi-map", angle: -45 },
+    { label: "Posiciones", icon: "bi-people", angle: 0 },
+    { label: "Tecnicas", icon: "bi-lightning", angle: 45 },
+    { label: "Portero", icon: "bi-shield", angle: 90 },
+    { label: "Tactica", icon: "bi-diagram-3", angle: 135 },
+    { label: "Datos", icon: "bi-bar-chart", angle: 180 },
+    { label: "Test", icon: "bi-pencil", angle: -135 }
+  ];
+  const cx = 50, cy = 50, r = 38;
+  let html = '<svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">';
+  nodes.forEach(n => {
+    const rad = n.angle * Math.PI / 180;
+    const nx = cx + r * Math.cos(rad);
+    const ny = cy + r * Math.sin(rad);
+    html += `<line x1="${cx}" y1="${cy}" x2="${nx}" y2="${ny}" stroke="rgba(0,229,255,0.18)" stroke-width="0.3">
+      <animate attributeName="stroke-opacity" values="0.18;0.35;0.18" dur="3s" repeatCount="indefinite"/>
+    </line>`;
+  });
+  html += '</svg>';
+  html += `<div class="map-node center-node" style="left:50%;top:50%;transform:translate(-50%,-50%)">BALONMANO</div>`;
+  nodes.forEach(n => {
+    const rad = n.angle * Math.PI / 180;
+    const nx = cx + r * Math.cos(rad);
+    const ny = cy + r * Math.sin(rad);
+    html += `<div class="map-node" style="left:${nx}%;top:${ny}%;transform:translate(-50%,-50%)">
+      <span class="node-icon"><i class="bi ${n.icon}"></i></span>
+      <span class="node-label">${n.label}</span>
+    </div>`;
+  });
+  map.innerHTML = html;
+}
+
+// Bento Grid
+function renderBentoGrid() {
+  const c = document.getElementById('bentoGrid');
+  c.innerHTML = appData.hubModules.map(m => `
+    <div class="bento-card ${m.accent} ${m.span || ''}" tabindex="0" role="button"
+         aria-label="Ir a ${m.title}" onclick="document.querySelector('${m.section}').scrollIntoView({behavior:'smooth'})"
+         onkeydown="if(event.key==='Enter')this.click()">
+      <span class="card-icon"><i class="bi ${m.icon}"></i></span>
+      <div class="card-title">${m.title}</div>
+      <div class="card-desc">${m.desc}</div>
+    </div>
+  `).join('');
+}
+
+// Positions Grid
+function renderPositions() {
+  const c = document.getElementById('positionsGrid');
+  const accId = 'posAccordion';
+  c.innerHTML = appData.positions.map((p, i) => `
+    <div class="pos-card" tabindex="0">
+      <div class="pos-card-header">
+        <div class="pos-number" style="background:${p.color}">${p.number}</div>
+        <div>
+          <h4 style="font-family:var(--font-display);font-size:1.05rem;margin:0;color:var(--text-primary)">${p.name}</h4>
+          <div style="font-size:.8rem;color:${p.color};font-weight:500">${p.role}</div>
+        </div>
+      </div>
+      <div class="pos-card-body">
+        <div class="pos-attrs">${p.attributes.map(a => `<span class="pos-attr">${a}</span>`).join('')}</div>
+        <div class="accordion accordion-custom" id="${accId}${i}">
+          <div class="accordion-item" style="background:transparent;border:none">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#posCollapse${i}" aria-expanded="false" aria-controls="posCollapse${i}">
+                Rol ofensivo
+              </button>
+            </h2>
+            <div id="posCollapse${i}" class="accordion-collapse collapse" data-bs-parent="#${accId}${i}">
+              <div class="accordion-body p-2">${p.offense}</div>
+            </div>
+          </div>
+          <div class="accordion-item" style="background:transparent;border:none">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#posDef${i}" aria-expanded="false" aria-controls="posDef${i}">
+                Rol defensivo
+              </button>
+            </h2>
+            <div id="posDef${i}" class="accordion-collapse collapse" data-bs-parent="#${accId}${i}">
+              <div class="accordion-body p-2">${p.defense}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Techniques Grid
+function renderTechniques() {
+  const c = document.getElementById('techniquesGrid');
+  c.innerHTML = appData.techniques.map(t => `
+    <div class="tech-card ${t.accent}" tabindex="0">
+      <span class="tech-icon"><i class="bi ${t.icon}"></i></span>
+      <h4>${t.name}</h4>
+      <p class="tech-desc">${t.desc}</p>
+      <div class="tech-detail">
+        <div class="tech-detail-item">
+          <div class="detail-label">Cuando usar</div>
+          <div class="detail-text">${t.when}</div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="detail-label">Ventaja</div>
+          <div class="detail-text">${t.advantage}</div>
+        </div>
+        <div class="tech-detail-item">
+          <div class="detail-label">Lectura tactica</div>
+          <div class="detail-text">${t.reading}</div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// Goalkeeper
+function renderGoalkeeper() {
+  const c = document.getElementById('gkAspects');
+  c.innerHTML = appData.goalkeeper.aspects.map(a => `
+    <div class="gk-aspect" tabindex="0">
+      <span class="aspect-icon"><i class="bi ${a.icon}"></i></span>
+      <h5>${a.title}</h5>
+      <p>${a.text}</p>
+    </div>
+  `).join('');
+}
+
+// Tactics
+function renderTactics() {
+  const c = document.getElementById('tacticsGrid');
+  c.innerHTML = appData.tactics.map(t => `
+    <div class="tactic-card" tabindex="0">
+      <span class="tactic-icon"><i class="bi ${t.icon}"></i></span>
+      <h4>${t.name}</h4>
+      <p class="tactic-desc">${t.desc}</p>
+      <div class="tactic-purpose">
+        <div class="tp-label">Proposito</div>
+        <div class="tp-text">${t.purpose}</div>
+      </div>
+      <div class="tactic-key"><i class="bi bi-key me-1"></i>${t.key}</div>
+    </div>
+  `).join('');
+}
+
+// Takeaways
+function renderTakeaways() {
+  const c = document.getElementById('takeawayChips');
+  c.innerHTML = appData.takeaways.map(t => `<span class="takeaway-chip">${t}</span>`).join('');
+}
+
+/* ===== QUIZ ===== */
+let quizState = { current: 0, score: 0, answered: false };
+
+function renderQuiz() {
+  quizState = { current: 0, score: 0, answered: false };
+  document.getElementById('quizResults').classList.remove('show');
+  document.getElementById('quizResults').style.display = 'none';
+  document.getElementById('quizCard').style.display = 'block';
+  renderQuizQuestion();
+}
+
+function renderQuizQuestion() {
+  const card = document.getElementById('quizCard');
+  const q = appData.quiz[quizState.current];
+  const total = appData.quiz.length;
+  const pct = ((quizState.current) / total * 100);
+  document.getElementById('quizProgressBar').style.width = pct + '%';
+
+  const letters = ['A', 'B', 'C', 'D'];
+  card.innerHTML = `
+    <div class="quiz-question-num">Pregunta ${quizState.current + 1} de ${total}</div>
+    <div class="quiz-question">${q.question}</div>
+    <div class="quiz-options">
+      ${q.options.map((o, i) => `
+        <button class="quiz-option" onclick="answerQuiz(${i})" aria-label="Opción ${letters[i]}: ${o}">
+          <span class="opt-letter">${letters[i]}</span>
+          <span>${o}</span>
+        </button>
+      `).join('')}
+    </div>
+    <div class="quiz-feedback" id="quizFeedback"></div>
+    <button class="btn-primary-custom quiz-next" id="quizNext" onclick="nextQuizQuestion()">
+      ${quizState.current < total - 1 ? 'Siguiente pregunta' : 'Ver resultados'}
+    </button>
+  `;
+  quizState.answered = false;
+}
+
+function answerQuiz(idx) {
+  if (quizState.answered) return;
+  quizState.answered = true;
+  const q = appData.quiz[quizState.current];
+  const opts = document.querySelectorAll('.quiz-option');
+  const fb = document.getElementById('quizFeedback');
+  const nxt = document.getElementById('quizNext');
+
+  opts.forEach((o, i) => {
+    if (i === q.correct) o.classList.add('correct');
+    if (i === idx && idx !== q.correct) o.classList.add('wrong');
+    if (i !== idx && i !== q.correct) o.classList.add('disabled');
+  });
+
+  if (idx === q.correct) {
+    quizState.score++;
+    fb.className = 'quiz-feedback show correct-fb';
+    fb.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Correcto. ' + q.feedback;
+  } else {
+    fb.className = 'quiz-feedback show wrong-fb';
+    fb.innerHTML = '<i class="bi bi-x-circle-fill me-2"></i>Incorrecto. ' + q.feedback;
+  }
+  nxt.classList.add('show');
+}
+
+function nextQuizQuestion() {
+  quizState.current++;
+  if (quizState.current >= appData.quiz.length) {
+    showQuizResults();
+  } else {
+    renderQuizQuestion();
+  }
+}
+
+function showQuizResults() {
+  document.getElementById('quizCard').style.display = 'none';
+  const res = document.getElementById('quizResults');
+  const total = appData.quiz.length;
+  const pct = Math.round((quizState.score / total) * 100);
+  document.getElementById('quizProgressBar').style.width = '100%';
+
+  let cls = 'needs';
+  let msg = 'Te recomendamos repasar los contenidos y volver a intentarlo.';
+  if (pct >= 80) { cls = 'great'; msg = 'Excelente comprensión de los fundamentos del balonmano.'; }
+  else if (pct >= 60) { cls = 'good'; msg = 'Buena base de conocimiento. Repasa los módulos donde fallaste.'; }
+
+  res.innerHTML = `
+    <div class="quiz-score ${cls}">${quizState.score}/${total}</div>
+    <p>${msg}</p>
+    <p style="color:var(--text-muted);font-size:.88rem;margin-bottom:1.5rem">${pct}% de aciertos</p>
+    <button class="btn-restart" onclick="renderQuiz()"><i class="bi bi-arrow-counterclockwise me-2"></i>Reiniciar test</button>
+  `;
+  res.style.display = 'block';
+  res.classList.add('show');
+}
+
+/* ===== COURT TOOLTIP ===== */
+function initCourtInteractivity() {
+  const zones = document.querySelectorAll('.court-zone');
+  const tooltip = document.getElementById('courtTooltip');
+  const wrapper = tooltip.closest('.court-svg-wrapper');
+  zones.forEach(z => {
+    z.addEventListener('mouseenter', () => {
+      tooltip.textContent = z.getAttribute('data-zone');
+      tooltip.style.display = 'block';
+    });
+    z.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+    z.addEventListener('focus', () => {
+      tooltip.textContent = z.getAttribute('data-zone');
+      tooltip.style.display = 'block';
+    });
+    z.addEventListener('blur', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+}
+
+/* ===== PARTICLES ===== */
+function initParticles() {
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+  const PARTICLE_COUNT = 60;
+  const MAX_DIST = 120;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    particles = [];
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 1.5 + 0.5
+      });
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.x < 0) p.x = w;
+      if (p.x > w) p.x = 0;
+      if (p.y < 0) p.y = h;
+      if (p.y > h) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, Math.max(0.5, p.r), 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,229,255,0.25)';
+      ctx.fill();
+    });
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(0,229,255,${0.08 * (1 - dist / MAX_DIST)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (!mq.matches) {
+    resize();
+    createParticles();
+    animate();
+    window.addEventListener('resize', () => { resize(); createParticles(); });
+  }
+}
+
+/* ===== SCROLL REVEAL ===== */
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(r => observer.observe(r));
+}
+
+/* ===== HIGH CONTRAST ===== */
+function initContrastToggle() {
+  const btn = document.getElementById('contrastToggle');
+  let hc = false;
+  btn.addEventListener('click', () => {
+    hc = !hc;
+    document.documentElement.classList.toggle('high-contrast', hc);
+    btn.setAttribute('aria-pressed', hc);
+  });
+}
+
+/* ===== PWA MANIFEST & SERVICE WORKER ===== */
+function initPWA() {
+  // Manifest
+  const manifest = {
+    name: "Dinámica y Táctica del Balonmano",
+    short_name: "Balonmano",
+    description: "Infografía interactiva educativa sobre balonmano",
+    start_url: ".",
+    display: "standalone",
+    background_color: "#0a1128",
+    theme_color: "#0a1128",
+    icons: [{
+      src: "data:image/svg+xml," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#0a1128"/><circle cx="50" cy="50" r="30" fill="none" stroke="#00e5ff" stroke-width="4"/><circle cx="50" cy="50" r="8" fill="#00e5ff"/></svg>'),
+      sizes: "192x192",
+      type: "image/svg+xml"
+    }]
+  };
+  const mBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+  const mUrl = URL.createObjectURL(mBlob);
+  const mLink = document.createElement('link');
+  mLink.rel = 'manifest';
+  mLink.href = mUrl;
+  document.head.appendChild(mLink);
+
+  // Service Worker
+  if ('serviceWorker' in navigator) {
+    const swCode = `
+      const CACHE_NAME = 'balonmano-v1';
+      self.addEventListener('install', e => { self.skipWaiting(); });
+      self.addEventListener('activate', e => { e.waitUntil(clients.claim()); });
+      self.addEventListener('fetch', e => {
+        e.respondWith(
+          caches.match(e.request).then(r => r || fetch(e.request).then(res => {
+            if (res && res.status === 200 && res.type === 'basic') {
+              const clone = res.clone();
+              caches.open(CACHE_NAME).then(c => c.put(e.request, clone));
+            }
+            return res;
+          }).catch(() => new Response('Sin conexión', { status: 503 })))
+        );
+      });
+    `;
+    const swBlob = new Blob([swCode], { type: 'application/javascript' });
+    const swUrl = URL.createObjectURL(swBlob);
+    navigator.serviceWorker.register(swUrl).catch(() => {});
+  }
+}
+
+/* ===== INICIALIZACIÓN ===== */
+document.addEventListener('DOMContentLoaded', () => {
+  renderHeroStats();
+  renderConceptMap();
+  renderBentoGrid();
+  renderPositions();
+  renderTechniques();
+  renderGoalkeeper();
+  renderTactics();
+  renderTakeaways();
+  renderQuiz();
+  initCourtInteractivity();
+  initParticles();
+  initScrollReveal();
+  initContrastToggle();
+  initPWA();
+});
+</script>
 </body>
-
 </html>
